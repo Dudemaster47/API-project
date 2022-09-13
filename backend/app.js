@@ -7,6 +7,8 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 
+
+
 const { environment } = require('./config');
 const isProduction = environment === 'production';
 
@@ -44,6 +46,10 @@ if (!isProduction) {
   );
 
   app.use(routes); // Connect all the routes
+
+  app.get('/', async(req,res)=>{
+    res.json("successfully created.")
+  })
 
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
