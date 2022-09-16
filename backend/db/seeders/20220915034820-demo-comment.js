@@ -24,7 +24,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Comments', {
-      username: { [Op.in]: ['An absolute masterpiece that makes me hungry for more',
+      body: { [Op.in]: ['An absolute masterpiece that makes me hungry for more',
       'ITS JUST SILENCE FOR FOUR MINUTES???? WTF',
        'moo'] }
     }, {});

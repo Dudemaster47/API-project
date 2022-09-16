@@ -24,7 +24,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Playlists', {
-      username: { [Op.in]: ['Finest James',
+      name: { [Op.in]: ['Finest James',
       'blueBerry bEAts',
       'sour Smash hits'] }
     }, {});
