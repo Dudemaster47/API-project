@@ -5,56 +5,56 @@ const { restoreUser, requireAuth } = require('../../utils/auth');
 const { Song, User, Album, Playlist, Comment } = require('../../db/models');
 const router = express.Router();
 
-// GET all songs
+// GET all albums
 router.get(
     '/', async (req, res) => {
-        const songs = await Song.findAll();
+        const albums = await Album.findAll();
 
-        return res.json({songs});
+        return res.json({albums});
     }
 )
 
-// GET all songs created by the Current User
+// GET all albums created by the Current User
 router.get(
     '/current', requireAuth, async (req, res, next) => {
         const userId = req.user.id
 
-        const userSongs = await Song.findAll({
+        const userAlbums = await Album.findAll({
             where: {
                 userId: userId
             }
         });
 
-        res.json(userSongs);
+        res.json(userAlbums);
     }
 )
 
-// GET a song based on an ID
+// GET an album based on an ID
 router.get(
-    '/:songId', async (req, res) => {
-        const songId = req.params.songId;
+    '/:albumId', async (req, res) => {
+        const albumId = req.params.albumId;
 
-        const song = await Song.findOne({
+        const album = await Album.findOne({
             where: {
-                id: songId
+                id: albumId
             }
         });
 
         const artist = await User.findOne({
             where: {
-                id: song.userId
+                id: album.userId
             },
             attributes: ['id', 'username', 'previewImage']
         });
 
-        const album = await Album.findOne({
+        const songs = await Song.findAll({
             where: {
-                id: song.albumId
+                albumId: album.id
             },
-            attributes: ['id', 'title', 'previewImage']
+            attributes: ['id', 'userId', 'albumId', 'title', 'description', 'url', 'createdAt', 'updatedAt', 'previewImage']
         })
 
-        res.json({song, artist: artist, album: album});
+        res.json({album, artist: artist, songs: songs});
     }
 )
 
