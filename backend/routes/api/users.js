@@ -91,7 +91,38 @@ router.get(
 
     res.json(artistSongs);
   }
-)
+);
 
+// GET all albums of an artist based on an ID
+
+router.get(
+  '/:userId/albums', async (req, res) => {
+    const userId = req.params.userId;
+
+    const artistAlbums = await Album.findAll({
+      where: {
+        userId: userId
+      }
+    });
+
+    res.json(artistAlbums);
+  }
+);
+
+// GET all playlists of an artist based on an ID
+
+router.get(
+  '/:userId/playlists', async (req, res) => {
+    const userId = req.params.userId;
+
+    const artistPlaylists = await Playlist.findAll({
+      where: {
+        userId: userId
+      }
+    });
+
+    res.json(artistPlaylists);
+  }
+);
 
 module.exports = router;

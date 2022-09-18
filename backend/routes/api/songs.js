@@ -3,6 +3,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { restoreUser, requireAuth } = require('../../utils/auth');
 const { Song, User, Album, Playlist, Comment } = require('../../db/models');
+const comment = require('../../db/models/comment');
 const router = express.Router();
 
 // GET all songs
@@ -56,6 +57,24 @@ router.get(
 
         res.json({song, artist: artist, album: album});
     }
-)
+);
+
+// GET all comments based on a song's id
+router.get(
+    '/:songId/comments', async (req, res) => {
+        const songId = req.params.songId;
+
+        const comments = await Comment.findAll({
+            where: {
+                songId: songId
+            },
+            include: {
+                model: User,
+                attributes: ['id', 'username']
+            }
+        });
+
+        res.json(comments);
+    });
 
 module.exports = router;
