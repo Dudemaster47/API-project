@@ -77,4 +77,21 @@ router.get(
         res.json(comments);
     });
 
+// POST a comment to a song based on the song's id
+router.post(
+    '/:songId/comments', requireAuth, async (req, res) => {
+        const songId = req.params.songId;
+        const userId = req.user.id;
+        const {body} = req.body;
+
+        const comment = await Comment.create({
+            userId: userId,
+            songId: songId,
+            body
+        });
+
+        res.json(comment);
+    }
+)
+
 module.exports = router;

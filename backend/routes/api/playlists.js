@@ -46,4 +46,51 @@ router.get(
     }
 );
 
+// POST a playlist
+router.post(
+    '/', requireAuth, async (req, res) => {
+        const {name, previewImage} = req.body;
+        const userId = req.user.id;
+
+        const playlist = await Playlist.create({
+            userId: userId,
+            name,
+            previewImage
+        });
+
+        res.json(playlist)
+    }
+);
+
+// POST a song to an playlist based on the playlist's ID
+router.post(
+    '/:playlistId', requireAuth, async (req, res, next) => {
+        const playlistId = req.params.playlistId;
+        const userId = req.user.id;
+        const {songId} = req.body;
+        const playlist = await Playlist.findOne({
+            where: {
+                id: playlistId
+            }
+        });
+
+        if(playlist.userId !== userId){
+            const err = new Error('Unauthorized user');
+            err.status = 403;
+            err.title = 'Unauthorized user';
+            err.erors = ['This is not your album.'];
+            return next(err);
+        }
+
+        const songPlaylist = await SongPlaylist.create({
+            songId,
+            playlistId: playlistId
+        });
+
+        console.log(songPlaylist);
+
+        res.json(songPlaylist);
+    }
+);
+
 module.exports = router;

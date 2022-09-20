@@ -56,6 +56,57 @@ router.get(
 
         res.json({album, artist: artist, songs: songs});
     }
-)
+);
+
+// POST an album
+router.post(
+    '/', requireAuth, async (req, res) => {
+        const {title, description, previewImage} = req.body;
+        const userId = req.user.id;
+
+        const album = await Album.create({
+            userId: userId,
+            title,
+            description,
+            previewImage
+        });
+
+        res.json(album)
+    }
+);
+
+// POST a song to an album based on the album's ID
+router.post(
+    '/:albumId', requireAuth, async (req, res, next) => {
+        const albumId = req.params.albumId;
+        const userId = req.user.id;
+        const {title, description, url, previewImage} = req.body;
+        const album = await Album.findOne({
+            where: {
+                id: albumId
+            }
+        });
+
+        if(album.userId !== userId){
+            const err = new Error('Unauthorized user');
+            err.status = 403;
+            err.title = 'Unauthorized user';
+            err.erors = ['This is not your album.'];
+            return next(err);
+        }
+
+        const song = await Song.create({
+            userId: userId,
+            albumId: albumId,
+            title,
+            description,
+            url,
+            previewImage
+        });
+
+        res.json(song);
+    }
+);
+
 
 module.exports = router;
