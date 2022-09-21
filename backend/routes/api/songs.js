@@ -92,6 +92,60 @@ router.post(
 
         res.json(comment);
     }
-)
+);
+
+// PATCH a song
+router.patch(
+    '/:songId/', requireAuth, async (req, res, next) => {
+        const songId = req.params.songId;
+        const userId = req.user.id;
+        const {albumId, title, description, url, previewImage} = req.body;
+    
+        const song = await Song.findOne({
+            where: {
+                id: songId
+            }
+        });
+
+        if(song.userId !== userId){
+            const err = new Error('Unauthorized user');
+            err.status = 403;
+            err.title = 'Unauthorized user';
+            err.erors = ['This is not your song.'];
+            return next(err);
+        }
+
+        song.update({
+            albumId,
+            title,
+            description,
+            url,
+            previewImage
+        });
+
+        res.json(song);
+    }
+);
+
+// DELETE a song
+router.delete('/:songId', requireAuth, async (req, res, next) => {
+    const {songId} = req.params;
+    const userId = req.user.id;
+    const song = await Song.findByPk(songId);
+    
+    if(song.userId !== userId){
+        const err = new Error('Unauthorized user');
+        err.status = 403;
+        err.title = 'Unauthorized user';
+        err.erors = ['This is not your comment.'];
+        return next(err);
+    }
+
+    await song.destroy();
+
+    res.json({
+        message: "Successfully deleted"
+    });
+});
 
 module.exports = router;

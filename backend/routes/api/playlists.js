@@ -78,7 +78,7 @@ router.post(
             const err = new Error('Unauthorized user');
             err.status = 403;
             err.title = 'Unauthorized user';
-            err.erors = ['This is not your album.'];
+            err.erors = ['This is not your playlist.'];
             return next(err);
         }
 
@@ -94,5 +94,59 @@ router.post(
         res.json(songPlaylist);
     }
 );
+
+// PATCH a playlist
+router.patch(
+    '/:playlistId/', requireAuth, async (req, res, next) => {
+        const playlistId = req.params.playlistId;
+        const userId = req.user.id;
+        const {name, previewImage} = req.body;
+    
+        const playlist = await Playlist.findOne({
+            where: {
+                id: playlistId
+            }
+        });
+
+        if(playlist.userId !== userId){
+            const err = new Error('Unauthorized user');
+            err.status = 403;
+            err.title = 'Unauthorized user';
+            err.erors = ['This is not your album.'];
+            return next(err);
+        }
+
+        playlist.update({
+            name,
+            previewImage
+        });
+
+        res.json(playlist);
+    }
+);
+
+// DELETE a playlist
+router.delete('/:playlistId', requireAuth, async (req, res, next) => {
+    const {playlistId} = req.params;
+    const userId = req.user.id;
+    const playlist = await Playlist.findByPk(playlistId);
+    
+    if(playlist.userId !== userId){
+        const err = new Error('Unauthorized user');
+        err.status = 403;
+        err.title = 'Unauthorized user';
+        err.erors = ['This is not your comment.'];
+        return next(err);
+    }
+
+    await playlist.destroy();
+
+    res.json({
+        message: "Successfully deleted"
+    });
+});
+
+
+// DELETE a song from a playlist
 
 module.exports = router;

@@ -12,7 +12,7 @@ router.get(
 
         return res.json({albums});
     }
-)
+);
 
 // GET all albums created by the Current User
 router.get(
@@ -108,5 +108,58 @@ router.post(
     }
 );
 
+// PATCH an album
+router.patch(
+    '/:albumId/', requireAuth, async (req, res, next) => {
+        const albumId = req.params.albumId;
+        const userId = req.user.id;
+        const { title, description, previewImage} = req.body;
+    
+        const album = await Album.findOne({
+            where: {
+                id: albumId
+            }
+        });
+
+        if(album.userId !== userId){
+            const err = new Error('Unauthorized user');
+            err.status = 403;
+            err.title = 'Unauthorized user';
+            err.erors = ['This is not your album.'];
+            return next(err);
+        }
+
+        album.update({
+            title,
+            description,
+            previewImage
+        });
+
+        res.json(album);
+    }
+);
+
+// DELETE an album
+router.delete('/:albumId', requireAuth, async (req, res, next) => {
+    const {albumId} = req.params;
+    const userId = req.user.id;
+    const album = await Album.findByPk(albumId);
+    
+    if(album.userId !== userId){
+        const err = new Error('Unauthorized user');
+        err.status = 403;
+        err.title = 'Unauthorized user';
+        err.erors = ['This is not your comment.'];
+        return next(err);
+    }
+
+    await album.destroy();
+
+    res.json({
+        message: "Successfully deleted"
+    });
+});
+
+// DELETE a song from an album?
 
 module.exports = router;
