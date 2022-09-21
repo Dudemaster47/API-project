@@ -82,12 +82,14 @@ router.post(
             return next(err);
         }
 
-        const songPlaylist = await SongPlaylist.create({
-            songId,
-            playlistId: playlistId
-        });
+        playlist.addSong(songId);
 
-        console.log(songPlaylist);
+        const songPlaylist = await SongPlaylist.findOne({
+            where: {
+                playlistId: playlistId,
+                songId: songId
+            }
+        });
 
         res.json(songPlaylist);
     }
