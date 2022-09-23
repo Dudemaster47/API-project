@@ -7,7 +7,7 @@ const router = express.Router();
 
 // GET all comments
 router.get(
-    '/', async (req, res) => {
+    '/', async (req, res, next) => {
         const comments = await Comment.findAll();
 
         return res.json(comments);
@@ -27,11 +27,27 @@ router.patch(
             }
         });
 
+        if(!comment){
+            const err = new Error('Not Found');
+            err.status = 404;
+            err.title = 'Not Found';
+            err.errors = ["Comment couldn't be found."];
+            return next(err);
+        }
+
+        if(!comment.body){
+            const err = new Error('Validation Error');
+            err.status = 400;
+            err.title = 'Validation Error';
+            err.errors = ["Comment body text is required"];
+            return next(err);
+        }
+
         if(comment.userId !== userId){
             const err = new Error('Unauthorized user');
             err.status = 403;
             err.title = 'Unauthorized user';
-            err.erors = ['This is not your comment.'];
+            err.errors = ['This is not your comment.'];
             return next(err);
         }
 
@@ -49,11 +65,19 @@ router.delete('/:commentId', requireAuth, async (req, res, next) => {
     const userId = req.user.id;
     const comment = await Comment.findByPk(commentId);
 
+    if(!comment){
+        const err = new Error('Not Found');
+        err.status = 404;
+        err.title = 'Not Found';
+        err.errors = ["Comment couldn't be found."];
+        return next(err);
+    }
+
     if(comment.userId !== userId){
         const err = new Error('Unauthorized user');
         err.status = 403;
         err.title = 'Unauthorized user';
-        err.erors = ['This is not your comment.'];
+        err.errors = ['This is not your comment.'];
         return next(err);
     }
     

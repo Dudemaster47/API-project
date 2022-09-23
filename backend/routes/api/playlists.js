@@ -7,14 +7,14 @@ const router = express.Router();
 
 // GET all playlists
 router.get(
-    '/', async (req, res) => {
+    '/', async (req, res, next) => {
         const playlists = await Playlist.findAll();
 
         return res.json(playlists);
     }
 );
 
-// GET all songs created by the Current User
+// GET all  playlists created by the Current User
 router.get(
     '/current', requireAuth, async (req, res, next) => {
         const userId = req.user.id
@@ -29,9 +29,9 @@ router.get(
     }
 )
 
-// GET a song based on an ID
+// GET a playlist based on an ID
 router.get(
-    '/:playlistId', async (req, res) => {
+    '/:playlistId', async (req, res, next) => {
         const playlistId = req.params.playlistId;
 
         const playlist = await Playlist.findOne({
@@ -41,6 +41,13 @@ router.get(
             include: Song
         });
 
+        if(!playlist){
+            const err = new Error('Not Found');
+            err.status = 404;
+            err.title = 'Not Found';
+            err.errors = ["Playlist couldn't be found."];
+            return next(err);
+        }
 
         res.json(playlist);
     }
@@ -48,7 +55,7 @@ router.get(
 
 // POST a playlist
 router.post(
-    '/', requireAuth, async (req, res) => {
+    '/', requireAuth, async (req, res, next) => {
         const {name, previewImage} = req.body;
         const userId = req.user.id;
 
@@ -57,6 +64,14 @@ router.post(
             name,
             previewImage
         });
+
+        if(!playlist.name){
+            const err = new Error('Validation Error');
+            err.status = 400;
+            err.title = 'Validation Error';
+            err.errors = ["Playlist name is required"];
+            return next(err);
+        }
 
         res.json(playlist)
     }
@@ -74,11 +89,34 @@ router.post(
             }
         });
 
+        const song = await Song.findOne({
+            where: {
+                id: playlistId
+            }
+        });
+
+        if(!playlist){
+            const err = new Error('Not Found');
+            err.status = 404;
+            err.title = 'Not Found';
+            err.errors = ["Playlist couldn't be found."];
+            return next(err);
+        }
+
+        if(!song){
+            const err = new Error('Not Found');
+            err.status = 404;
+            err.title = 'Not Found';
+            err.errors = ["Song couldn't be found."];
+            return next(err);
+        }
+
+
         if(playlist.userId !== userId){
             const err = new Error('Unauthorized user');
             err.status = 403;
             err.title = 'Unauthorized user';
-            err.erors = ['This is not your playlist.'];
+            err.errors = ['This is not your playlist.'];
             return next(err);
         }
 
@@ -108,11 +146,27 @@ router.patch(
             }
         });
 
+        if(!playlist){
+            const err = new Error('Not Found');
+            err.status = 404;
+            err.title = 'Not Found';
+            err.errors = ["Playlist couldn't be found."];
+            return next(err);
+        }
+
+        if(!playlist.name){
+            const err = new Error('Validation Error');
+            err.status = 400;
+            err.title = 'Validation Error';
+            err.errors = ["Playlist name is required"];
+            return next(err);
+        }
+
         if(playlist.userId !== userId){
             const err = new Error('Unauthorized user');
             err.status = 403;
             err.title = 'Unauthorized user';
-            err.erors = ['This is not your album.'];
+            err.errors = ['This is not your album.'];
             return next(err);
         }
 
@@ -130,12 +184,20 @@ router.delete('/:playlistId', requireAuth, async (req, res, next) => {
     const {playlistId} = req.params;
     const userId = req.user.id;
     const playlist = await Playlist.findByPk(playlistId);
+
+    if(!playlist){
+        const err = new Error('Not Found');
+        err.status = 404;
+        err.title = 'Not Found';
+        err.errors = ["Playlist couldn't be found."];
+        return next(err);
+    }
     
     if(playlist.userId !== userId){
         const err = new Error('Unauthorized user');
         err.status = 403;
         err.title = 'Unauthorized user';
-        err.erors = ['This is not your comment.'];
+        err.errors = ['This is not your comment.'];
         return next(err);
     }
 
