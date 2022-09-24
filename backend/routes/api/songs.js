@@ -247,8 +247,8 @@ router.post(
     }
 );
 
-// PATCH a song
-router.patch(
+// PUT a song
+router.put(
     '/:songId/', requireAuth, async (req, res, next) => {
         const songId = req.params.songId;
         const userId = req.user.id;

@@ -133,8 +133,8 @@ router.post(
     }
 );
 
-// PATCH a playlist
-router.patch(
+// PUT a playlist
+router.put(
     '/:playlistId/', requireAuth, async (req, res, next) => {
         const playlistId = req.params.playlistId;
         const userId = req.user.id;

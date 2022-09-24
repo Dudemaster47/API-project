@@ -14,8 +14,8 @@ router.get(
     }
 );
 
-// PATCH a comment
-router.patch(
+// PUT a comment
+router.put(
     '/:commentId/', requireAuth, async (req, res, next) => {
         const commentId = req.params.commentId;
         const userId = req.user.id;

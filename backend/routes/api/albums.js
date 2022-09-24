@@ -92,8 +92,8 @@ router.post(
     }
 );
 
-// PATCH an album
-router.patch(
+// PUT an album
+router.put(
     '/:albumId/', requireAuth, async (req, res, next) => {
         const albumId = req.params.albumId;
         const userId = req.user.id;
