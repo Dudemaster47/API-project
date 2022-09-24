@@ -42,16 +42,35 @@ router.post(
   }
 );
 
-// GET all songs of an artist based on an ID
-  
+// GET all details of an Artist from an id
 router.get(
-  '/:userId/songs', async (req, res) => {
+  '/:userId', async (req, res) => {
     const userId = req.params.userId;
+
+    const totalSongs = await Song.count({
+      where: {
+        userId: userId
+      }
+    });
+
+    const totalAlbums = await Album.count({
+      where: {
+        userId: userId
+      }
+    });
+
+    const previewImages = await Song.findAll({
+      where: {
+        userId: userId
+      },
+      attributes: ['previewImage']
+    });
 
     const artist = await User.findOne({
       where: {
         id: userId
-      }
+      },
+      attributes: ['id', 'username', 'previewImage']
     });
 
     if(!artist){
@@ -62,13 +81,7 @@ router.get(
       return next(err);
     }
 
-    const artistSongs = await Song.findAll({
-      where: {
-        userId: userId
-      }
-    });
-
-    res.json(artistSongs);
+    res.json({artist, totalSongs: totalSongs, totalAlbums: totalAlbums, previewImages: previewImages});
   }
 );
 
