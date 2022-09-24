@@ -88,7 +88,7 @@ router.get(
 // GET all songs of an artist based on an ID
   
 router.get(
-  '/:userId/songs', async (req, res) => {
+  '/:userId/songs', async (req, res, next) => {
     const userId = req.params.userId;
 
     const artist = await User.findOne({
@@ -118,7 +118,7 @@ router.get(
   // GET all playlists of an artist based on an ID
   
   router.get(
-    '/:userId/playlists', async (req, res) => {
+    '/:userId/playlists', async (req, res, next) => {
       const userId = req.params.userId;
   
       const artist = await User.findOne({
