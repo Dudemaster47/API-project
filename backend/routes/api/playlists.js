@@ -124,8 +124,11 @@ router.post(
 
         const songPlaylist = await SongPlaylist.findOne({
             where: {
-                playlistId: playlistId,
-                songId: songId
+                // playlistId: playlistId,
+                // songId: songId,
+                PlaylistId: playlistId,
+                SongId: songId
+
             }
         });
 
