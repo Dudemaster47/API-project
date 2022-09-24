@@ -13,7 +13,7 @@ const router = express.Router();
   // GET all albums of an artist based on an ID
   
   router.get(
-    '/:userId/albums', async (req, res) => {
+    '/:userId/albums', async (req, res, next) => {
       const userId = req.params.userId;
   
       const artist = await User.findOne({
