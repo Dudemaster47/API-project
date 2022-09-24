@@ -120,7 +120,7 @@ router.post(
             return next(err);
         }
 
-        playlist.addSong(songId);
+        await playlist.addSong(songId);
 
         const songPlaylist = await SongPlaylist.findOne({
             where: {
