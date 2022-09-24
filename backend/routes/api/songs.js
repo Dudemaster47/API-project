@@ -17,8 +17,8 @@ router.get(
             []
         };
 
-        const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
-        const size = req.query.size === undefined ? 5 : parseInt(req.query.size);
+        const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
+        const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
         if (page >= 1 && size >= 1) {
             query.limit = size;
             query.offset = size * (page - 1);
@@ -32,11 +32,27 @@ router.get(
             return next(err);
         }
 
+        if (page > 10){
+            const err = new Error('Validation Error');
+            err.status = 400;
+            err.title = 'Validation Error';
+            err.errors = ['Page must be less than or equal to 10'];
+            return next(err);
+        }
+
         if (size < 0){
             const err = new Error('Validation Error');
             err.status = 400;
             err.title = 'Validation Error';
             err.errors = ['Size must be greater than or equal to 0'];
+            return next(err);
+        }
+
+        if (size > 20){
+            const err = new Error('Validation Error');
+            err.status = 400;
+            err.title = 'Validation Error';
+            err.errors = ['Size must be less than or equal to 20'];
             return next(err);
         }
 
