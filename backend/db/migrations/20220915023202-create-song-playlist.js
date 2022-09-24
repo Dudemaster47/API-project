@@ -8,22 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      // songId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {model: 'Songs',
-      // key: 'id'}
-      // },
-      // playlistId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {model: 'Playlists',
-      // key: 'id'}
-      // },
-      SongId: {
+      songId: {
         type: Sequelize.INTEGER,
         references: {model: 'Songs',
       key: 'id'}
       },
-      PlaylistId: {
+      playlistId: {
         type: Sequelize.INTEGER,
         references: {model: 'Playlists',
       key: 'id'}
