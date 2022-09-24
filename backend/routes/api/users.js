@@ -44,7 +44,7 @@ router.post(
 
 // GET all details of an Artist from an id
 router.get(
-  '/:userId', async (req, res) => {
+  '/:userId', async (req, res, next) => {
     const userId = req.params.userId;
 
     const totalSongs = await Song.count({
@@ -84,5 +84,65 @@ router.get(
     res.json({artist, totalSongs: totalSongs, totalAlbums: totalAlbums, previewImages: previewImages});
   }
 );
+
+// GET all songs of an artist based on an ID
+  
+router.get(
+  '/:userId/songs', async (req, res) => {
+    const userId = req.params.userId;
+
+    const artist = await User.findOne({
+      where: {
+        id: userId
+      }
+    });
+
+    if(!artist){
+      const err = new Error('Not Found');
+      err.status = 404;
+      err.title = 'Not Found';
+      err.errors = ["Artist couldn't be found."];
+      return next(err);
+    }
+
+    const artistSongs = await Song.findAll({
+      where: {
+        userId: userId
+      }
+    });
+
+    res.json(artistSongs);
+  }
+);
+
+  // GET all playlists of an artist based on an ID
+  
+  router.get(
+    '/:userId/playlists', async (req, res) => {
+      const userId = req.params.userId;
+  
+      const artist = await User.findOne({
+        where: {
+          id: userId
+        }
+      });
+  
+      if(!artist){
+        const err = new Error('Not Found');
+        err.status = 404;
+        err.title = 'Not Found';
+        err.errors = ["Artist couldn't be found."];
+        return next(err);
+    }
+  
+      const artistPlaylists = await Playlist.findAll({
+        where: {
+          userId: userId
+        }
+      });
+  
+      res.json(artistPlaylists);
+    }
+  );
 
 module.exports = router;
