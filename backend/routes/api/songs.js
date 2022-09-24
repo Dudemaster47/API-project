@@ -229,6 +229,13 @@ router.post(
             return next(err);
         }
 
+
+        const comment = await Comment.create({
+            userId: userId,
+            songId: songId,
+            body
+        });
+
         if(!comment.body){
             const err = new Error('Validation Error');
             err.status = 400;
@@ -236,12 +243,6 @@ router.post(
             err.errors = ["Comment body text is required"];
             return next(err);
         }
-
-        const comment = await Comment.create({
-            userId: userId,
-            songId: songId,
-            body
-        });
 
         res.json(comment);
     }
