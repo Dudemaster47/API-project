@@ -91,7 +91,7 @@ router.post(
 
         const song = await Song.findOne({
             where: {
-                id: playlistId
+                id: songId
             }
         });
 
