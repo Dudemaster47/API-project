@@ -79,7 +79,7 @@ router.post(
 
 // POST a song to an playlist based on the playlist's ID
 router.post(
-    '/:playlistId', requireAuth, async (req, res, next) => {
+    '/:playlistId/songs', requireAuth, async (req, res, next) => {
         const playlistId = req.params.playlistId;
         const userId = req.user.id;
         const {songId} = req.body;
