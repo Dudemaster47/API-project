@@ -162,10 +162,9 @@ router.get(
 
 // POST a song to an album based on the album's ID
 router.post(
-    '/:albumId', requireAuth, async (req, res, next) => {
-        const albumId = req.params.albumId;
+    '/', requireAuth, async (req, res, next) => {
         const userId = req.user.id;
-        const {title, description, url, previewImage} = req.body;
+        const {title, description, url, previewImage, albumId} = req.body;
         const album = await Album.findOne({
             where: {
                 id: albumId
@@ -198,7 +197,7 @@ router.post(
 
         const song = await Song.create({
             userId: userId,
-            albumId: albumId,
+            albumId,
             title,
             description,
             url,
