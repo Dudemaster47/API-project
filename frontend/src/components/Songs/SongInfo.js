@@ -40,10 +40,9 @@ const SongDetail = () => {
             }
         }
     });
-
-    console.log(singleSong, "perhaps butts?")
+    
     if (singleSong?.album === null){
-        singleSong.album = { title: "placeholder"}
+        singleSong.album = { title: "placeholder album"}
     
     }
 
@@ -59,14 +58,12 @@ const SongDetail = () => {
             <br></br>
             {singleSong?.song.description}
             <br></br>
-            {singleSong?.song.url}
-            <br></br>
             <img src={singleSong?.song.previewImage}></img>
             <br></br>
             <br></br>
-            {singleSong?.song && <Comments song = {singleSong?.song} />}
+            {singleSong?.song && <Comments song={singleSong?.song} />}
             <br></br>
-            <AudioPlayer song = {singleSong?.song}/>
+            <AudioPlayer song={singleSong?.song}/>
             <br></br>
             <button onClick={deleteSong}>Delete</button>
             </div>

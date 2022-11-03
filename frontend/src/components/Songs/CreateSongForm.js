@@ -9,12 +9,12 @@ const CreateSongForm = () => {
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
     const [description, setDescription] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [previewImage, setPreviewImage] = useState('');
 
     const updateTitle = (e) => setTitle(e.target.value);
     const updateUrl = (e) => setUrl(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
-    const updateImageUrl = (e) => setImageUrl(e.target.value);
+    const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ const CreateSongForm = () => {
             title,
             url,
             description,
-            imageUrl
+            previewImage
         };
 
         let createdSong = await dispatch(createSong(payload));
@@ -47,20 +47,20 @@ const CreateSongForm = () => {
                 onChange={updateTitle}
             />
             <label htmlFor="song">Upload a song file</label>
-            <input
+            {/* <input
                 type="file"
                 id="song"
                 accept="audio/*"
                 value={url}
                 onChange={updateUrl}
-            />
-            {/* <input 
+            /> */}
+            <input 
                 type="text"
                 placeholder="Song"
                 required
                 value={url}
                 onChange={updateUrl}
-            /> */}
+            />
             <textarea 
                 value={description}
                 onChange={updateDescription}
@@ -68,20 +68,20 @@ const CreateSongForm = () => {
                 required
             />
             <label htmlFor="img">Upload an image file</label>
-            <input
+            {/* <input
                 type="file"
                 id="img"
                 accept="img/*"
-                value={imageUrl}
-                onChange={updateImageUrl}
-            />
-            {/* <input 
+                value={previewImage}
+                onChange={updatePreviewImage}
+            /> */}
+            <input 
                 type="text"
                 placeholder="Image"
                 required
-                value={imageUrl}
-                onChange={updateImageUrl}
-            /> */}
+                value={previewImage}
+                onChange={updatePreviewImage}
+            />
             <button type="submit">Submit</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>

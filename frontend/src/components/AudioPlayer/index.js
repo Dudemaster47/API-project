@@ -40,7 +40,7 @@ const AudioPlayer = ({song}) => {
     };
 
     const whilePlaying = () => {
-        progressBar.current.value = audioPlayer.current.currentTime;
+        progressBar.current.value = audioPlayer.current?.currentTime;
         changePlayerCurrentTime();
         animationRef.current = requestAnimationFrame(whilePlaying);
     }

@@ -39,11 +39,14 @@ function App() {
           <Route path="/songs/:songId">
             <SongDetail />
           </Route>
-          <Route path="/songs">
-            <Songs />
-          </Route>
           <Route path="/comments/:commentId/edit">
             <EditCommentForm />
+          </Route>
+          <Route path="/">
+            <Songs />
+          </Route>
+          <Route>
+            <h3>404 not found</h3>
           </Route>
         </Switch>
       )}
