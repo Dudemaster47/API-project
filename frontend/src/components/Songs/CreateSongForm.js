@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { createSong } from '../../store/songs';
 
 const CreateSongForm = () => {
@@ -16,7 +16,7 @@ const CreateSongForm = () => {
     const updateDescription = (e) => setDescription(e.target.value);
     const updateImageUrl = (e) => setImageUrl(e.target.value);
 
-    const handleSubmint = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const payload = {
@@ -28,7 +28,7 @@ const CreateSongForm = () => {
 
         let createdSong = await dispatch(createSong(payload));
         if (createdSong) {
-            history.push(`/song/${createdSong.id}`);
+            history.push(`/songs/${createdSong.id}`);
         }
     };
 
@@ -37,6 +37,7 @@ const CreateSongForm = () => {
     };
 
     return (
+    <div>
         <form onSubmit={handleSubmit} >
             <input 
                 type="text"
@@ -45,7 +46,7 @@ const CreateSongForm = () => {
                 value={title}
                 onChange={updateTitle}
             />
-            <label for="song">Upload a song file</label>
+            <label htmlFor="song">Upload a song file</label>
             <input
                 type="file"
                 id="song"
@@ -53,12 +54,20 @@ const CreateSongForm = () => {
                 value={url}
                 onChange={updateUrl}
             />
-            <textArea 
+            {/* <input 
+                type="text"
+                placeholder="Song"
+                required
+                value={url}
+                onChange={updateUrl}
+            /> */}
+            <textarea 
                 value={description}
                 onChange={updateDescription}
-                placeholer="Enter description"
+                placeholder="Enter description"
+                required
             />
-            <label for="img">Upload a song file</label>
+            <label htmlFor="img">Upload an image file</label>
             <input
                 type="file"
                 id="img"
@@ -66,11 +75,19 @@ const CreateSongForm = () => {
                 value={imageUrl}
                 onChange={updateImageUrl}
             />
+            {/* <input 
+                type="text"
+                placeholder="Image"
+                required
+                value={imageUrl}
+                onChange={updateImageUrl}
+            /> */}
             <button type="submit">Submit</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
         </form>
-    )
+    </div>
+    );
     
-}
+};
 
 export default CreateSongForm;

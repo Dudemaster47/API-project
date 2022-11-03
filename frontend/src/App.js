@@ -7,6 +7,10 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Songs from "./components/Songs";
 import SongDetail from "./components/Songs/SongInfo";
+import CreateSongForm from "./components/Songs/CreateSongForm";
+import EditSongForm from "./components/Songs/EditSongForm";
+import CreateCommentForm from "./components/Comments/CreateCommentForm";
+import EditCommentForm from "./components/Comments/EditCommentForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,11 +27,23 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/songs/new">
+            <CreateSongForm />
+          </Route>
+          <Route path="/songs/:songId/edit">
+            <EditSongForm />
+          </Route>
+          <Route path="/songs/:songId/comments">
+            <CreateCommentForm />
+          </Route>
           <Route path="/songs/:songId">
             <SongDetail />
           </Route>
           <Route path="/songs">
             <Songs />
+          </Route>
+          <Route path="/comments/:commentId/edit">
+            <EditCommentForm />
           </Route>
         </Switch>
       )}

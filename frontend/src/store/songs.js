@@ -19,6 +19,13 @@ const addSongs = (songs) => {
     }
 }
 
+const deleteSong = (id) => {
+    return {
+        type: DELETE_SONGS,
+        id
+    };
+};
+
 export const getAllSongs = () => async (dispatch) => {
     const response = await csrfFetch(`/api/songs`);
 
@@ -36,7 +43,7 @@ export const getSongInfo = (id) => async (dispatch) => {
 }
 
 export const createSong = (song) => async dispatch => {
-    const response = await csrfFetch(`/api/songs`, {
+    const response = await csrfFetch(`/api/songs/song`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -45,7 +52,7 @@ export const createSong = (song) => async dispatch => {
     });
 
     const data = await response.json();
-    console.log(data);
+    console.log(data, "goop");
 
     dispatch(addSongs(data));
     return data;
@@ -60,8 +67,17 @@ export const editSong = (id, song) => async dispatch => {
         body: JSON.stringify(song),
     });
     const data = await response.json();
-    console.log(data);
+    console.log(data, 'goop');
     dispatch(addSongs(data));
+    return data;
+}
+
+export const deleteSongById = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/songs/${id}`, {
+        method: "DELETE"
+    });
+    const data = await response.json();
+    dispatch(deleteSong(data));
     return data;
 }
 
@@ -94,6 +110,10 @@ const songReducer = (state = initialState, action) => {
                     ...action.payload
                 }
             };
+            case DELETE_SONGS:
+                newState = {...state};
+                delete newState[action.id];
+                return newState;
         default: 
             return state;
     }

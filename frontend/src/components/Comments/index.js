@@ -3,12 +3,21 @@ import { getAllComments } from "../../store/comments"
 import { useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { deleteCommentById } from "../../store/comments";
 
 const Comments = ({song}) => {
     const {id} = useParams();
     const dispatch = useDispatch();
+
     const comments = useSelector(state => Object.values(state.comment));
     
+    const deleteComment = (e, el) => {
+        e.preventDefault();
+        
+        dispatch(deleteCommentById(el.id));
+        
+    };
+
     useEffect(() => {
         dispatch(getAllComments(song.id))
     }, [id])
@@ -17,11 +26,18 @@ const Comments = ({song}) => {
         return null;
     }
 
-    console.log(comments)
     return (
-        <>
-            {comments && comments.map((el) => <div>{el.User.username} <br></br> {el.body}</div>)}
-        </>
+        <div>
+            {comments && comments.map((el) => 
+            <div key={el.id}>
+            {el.User?.username} 
+            <br></br> 
+            {el.body}
+            <br></br>
+            <button onClick={(e) => deleteComment(e, el)}>DELETE</button>
+            </div>
+            )}
+        </div>
     )
 }
 

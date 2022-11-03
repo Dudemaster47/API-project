@@ -224,6 +224,26 @@ router.post(
     }
 );
 
+// POST a song
+router.post(
+    '/song', requireAuth, async (req, res, next) => {
+        const userId = req.user.id;
+        const {title, description, url, previewImage} = req.body;
+
+        const song = await Song.create({
+            userId: userId,
+            albumId: null,
+            title,
+            description,
+            url,
+            previewImage
+        });
+
+        res.json(song);
+    }
+);
+
+
 // POST a comment to a song based on the song's id
 router.post(
     '/:songId/comments', requireAuth, async (req, res, next) => {
@@ -266,7 +286,7 @@ router.post(
 
 // PUT a song
 router.put(
-    '/:songId/', requireAuth, async (req, res, next) => {
+    '/:songId', requireAuth, async (req, res, next) => {
         const songId = req.params.songId;
         const userId = req.user.id;
         const {albumId, title, description, url, previewImage} = req.body;
