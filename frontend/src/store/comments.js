@@ -71,7 +71,7 @@ export const deleteCommentById = (id) => async dispatch => {
         method: "DELETE"
     });
     const data = await response.json();
-    dispatch(deleteComment(data));
+    dispatch(deleteComment(id));
     return data;
 }
 

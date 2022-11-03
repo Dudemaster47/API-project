@@ -4,6 +4,8 @@ import { useParams, useHistory } from "react-router-dom";
 import { getSongInfo } from "../../store/songs";
 import { deleteSongById } from "../../store/songs";
 import Comments from "../Comments";
+import AudioPlayer from "../AudioPlayer";
+
 
 const SongDetail = () => {
     const dispatch = useDispatch();
@@ -63,6 +65,8 @@ const SongDetail = () => {
             <br></br>
             <br></br>
             {singleSong?.song && <Comments song = {singleSong?.song} />}
+            <br></br>
+            <AudioPlayer song = {singleSong?.song}/>
             <br></br>
             <button onClick={deleteSong}>Delete</button>
             </div>
