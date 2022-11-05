@@ -45,6 +45,7 @@ const EditSongForm = () => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
+        history.push(`/songs/${songId}`);
     };
 
     return (

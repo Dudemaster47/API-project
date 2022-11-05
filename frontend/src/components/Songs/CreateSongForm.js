@@ -36,6 +36,7 @@ const CreateSongForm = () => {
                 setErrors(foundErrors);
             }
         });
+
         if (createdSong) {
             history.push(`/songs/${createdSong.id}`);
         }
@@ -43,6 +44,7 @@ const CreateSongForm = () => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
+        history.push(`/songs/`);
     };
 
     return (

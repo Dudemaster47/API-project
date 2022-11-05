@@ -77,7 +77,7 @@ export const deleteSongById = (id) => async dispatch => {
         method: "DELETE"
     });
     const data = await response.json();
-    dispatch(deleteSong(IDBKeyRange));
+    dispatch(deleteSong(id));
     return data;
 }
 

@@ -2,6 +2,7 @@ import { getAllSongs} from "../../store/songs";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Songs.css"
 
 
 
@@ -15,10 +16,12 @@ const Songs = () => {
     return ( 
         <>
             {songs && songs.map((el) => 
-            <Link key={el.id} to={`/songs/${el.id}`}>
-                <div>{el.title}</div>
-                <img src={el.previewImage} />
-            </Link>)}
+            <div className="songlink">
+                <Link key={el.id} to={`/songs/${el.id}`}>
+                    <div>{el.title}</div>
+                    <img src={el.previewImage} />
+                </Link>
+            </div>)}
         </>
     )
 }

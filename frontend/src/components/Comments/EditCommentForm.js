@@ -38,6 +38,7 @@ const EditCommentForm = () => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
+        history.push(`/songs/${songId}`);
     };
     
     return (

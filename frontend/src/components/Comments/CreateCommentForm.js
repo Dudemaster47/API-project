@@ -37,6 +37,8 @@ const CreateCommentForm = () => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
+        history.push(`/songs/${songId}`);
+
     };
 
 return (
