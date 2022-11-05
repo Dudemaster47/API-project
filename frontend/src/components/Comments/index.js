@@ -2,7 +2,7 @@
 import { getAllComments } from "../../store/comments"
 import { useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { deleteCommentById } from "../../store/comments";
 
 const Comments = ({song}) => {
@@ -10,6 +10,7 @@ const Comments = ({song}) => {
     const dispatch = useDispatch();
 
     const comments = useSelector(state => Object.values(state.comment));
+    const filteredComments = comments.filter(el => (el.songId === song.id));
     
     const deleteComment = (e, el) => {
         e.preventDefault();
@@ -28,12 +29,13 @@ const Comments = ({song}) => {
 
     return (
         <div>
-            {comments && comments.map((el) => 
+            {filteredComments && filteredComments.map((el) => 
             <div key={el.id}>
             {el.User?.username} 
             <br></br> 
             {el.body}
             <br></br>
+            <Link to={`/comments/${el.id}/edit`}><button>EDIT</button></Link>
             <button onClick={(e) => deleteComment(e, el)}>DELETE</button>
             </div>
             )}

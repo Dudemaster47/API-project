@@ -24,28 +24,28 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route key={1} path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/songs/new">
+          <Route key={2} path="/songs/new">
             <CreateSongForm />
           </Route>
-          <Route path="/songs/:songId/edit">
+          <Route key={3} path="/songs/:songId/edit">
             <EditSongForm />
           </Route>
-          <Route path="/songs/:songId/comments">
+          <Route key={4} path="/songs/:songId/comments">
             <CreateCommentForm />
           </Route>
-          <Route path="/songs/:songId">
+          <Route key={5} path="/songs/:songId">
             <SongDetail />
           </Route>
-          <Route path="/comments/:commentId/edit">
+          <Route key={6} path="/comments/:commentId/edit">
             <EditCommentForm />
           </Route>
-          <Route path="/">
+          <Route key={7} path="/">
             <Songs />
           </Route>
-          <Route>
+          <Route key={8}>
             <h3>404 not found</h3>
           </Route>
         </Switch>

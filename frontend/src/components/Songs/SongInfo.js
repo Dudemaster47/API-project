@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { getSongInfo } from "../../store/songs";
 import { deleteSongById } from "../../store/songs";
 import Comments from "../Comments";
@@ -49,23 +49,27 @@ const SongDetail = () => {
     return (
         <>
             <div>
-            {singleSong?.song.title}
-            <br></br>
-            {singleSong?.album.title}
-            <br></br>
-            {singleSong?.artist.username}
-            <br></br>
-            <br></br>
-            {singleSong?.song.description}
-            <br></br>
-            <img src={singleSong?.song.previewImage}></img>
-            <br></br>
-            <br></br>
-            {singleSong?.song && <Comments song={singleSong?.song} />}
-            <br></br>
-            <AudioPlayer song={singleSong?.song}/>
-            <br></br>
-            <button onClick={deleteSong}>Delete</button>
+                <div>{singleSong?.song.title}</div>
+           
+                <div>{singleSong?.album.title}</div>
+         
+                <div>{singleSong?.artist.username}</div>
+
+                <div>{singleSong?.song.description}</div>
+
+                <img src={singleSong?.song.previewImage}></img>
+
+                <AudioPlayer song={singleSong?.song}/>
+
+                <div>
+                    <Link to={`/songs/${singleSong?.song.id}/edit`}><button>Edit</button></Link>
+                    <Link to={`/songs/${singleSong?.song.id}/comments`}><button>Comment</button></Link>
+                    <button onClick={deleteSong}>Delete</button>
+                </div>
+
+                <div>
+                    {singleSong?.song && <Comments song={singleSong?.song} />}
+                </div>
             </div>
         </>
     )

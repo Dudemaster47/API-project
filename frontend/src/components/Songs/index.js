@@ -14,7 +14,11 @@ const Songs = () => {
 
     return ( 
         <>
-            {songs && songs.map((el) => <Link key={el.id} to={`/songs/${el.id}`}><div>{el.title}</div><div>{' '}</div></Link>)}
+            {songs && songs.map((el) => 
+            <Link key={el.id} to={`/songs/${el.id}`}>
+                <div>{el.title}</div>
+                <img src={el.previewImage} />
+            </Link>)}
         </>
     )
 }

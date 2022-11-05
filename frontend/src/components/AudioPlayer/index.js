@@ -13,11 +13,11 @@ const AudioPlayer = ({song}) => {
     const progressBar = useRef(); // ref the progress bar
     const animationRef = useRef(); // ref the animation
 
-    useEffect(() => {
-        const seconds = Math.floor(audioPlayer.current.duration)
+    const onDurationChangeHandler = (e) => {
+        const seconds = Math.floor(e.target.duration);
         setDuration(seconds);
         progressBar.current.max = seconds;
-    }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState])
+    };
 
     const calcTime = (secs) => {
         const minutes = Math.floor(secs/60);
@@ -56,12 +56,12 @@ const AudioPlayer = ({song}) => {
     }
 
     const backThirty = () => {
-        progressBar.current.value = Number(progressBar.current.value - 30);
+        progressBar.current.value = Number(progressBar.current.value) - 10;
         changeRange();
     }
 
     const fwdThirty = () => {
-        progressBar.current.value = Number(progressBar.current.value + 30);
+        progressBar.current.value = Number(progressBar.current.value) + 10;
         changeRange();
     }
     //the back and next buttons SHOULD load up the next or previous song in the playlist/album.
@@ -69,12 +69,17 @@ const AudioPlayer = ({song}) => {
     //so! they'll just be skip forward/back for now.
     return (
         <div className={styles.audioPlayer}>
-            <audio ref={audioPlayer} src={song?.url} preload="metadata"></audio>
-            <button className={styles.forwardBackward} onClick={backThirty}><IoIosSkipBackward />Back 30</button>
+            <audio 
+            ref={audioPlayer} 
+            src={song?.url} 
+            preload="metadata"
+            onDurationChange={onDurationChangeHandler}
+            ></audio>
+            <button className={styles.forwardBackward} onClick={backThirty}><IoIosSkipBackward />Back 10</button>
             <button onClick={toggleAudio} className={styles.playPause}> 
                 { isPlaying ? <IoMdPause /> : <IoMdPlay />}
             </button>
-            <button className={styles.forwardBackward} onClick={fwdThirty}><IoIosSkipForward />Forward 30</button>
+            <button className={styles.forwardBackward} onClick={fwdThirty}><IoIosSkipForward />Forward 10</button>
 
             {/* current time */}
             <div className={styles.currentTime}>{calcTime(currentTime)} </div>
@@ -85,7 +90,7 @@ const AudioPlayer = ({song}) => {
             </div>
 
             {/* duration */}
-            <div className={styles.duration}>{(duration && !isNaN(duration)) && calcTime(duration)}</div>
+            <div className={styles.duration}>{!isNaN(duration) && calcTime(duration)}</div>
         </div>
     );
 }

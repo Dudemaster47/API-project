@@ -1,6 +1,6 @@
 {
-  "short_name": "React Template",
-  "name": "Create React App Template",
+  "short_name": "SoundCloun",
+  "name": "SoundCloud Clone",
   "icons": [
     {
       "src":"favicon.ico",
