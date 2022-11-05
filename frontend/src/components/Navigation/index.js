@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-import navbarIcon from '../../images/navbar_icon.jpg'
+import navbarIcon from './navbar_icon.jpg';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -25,19 +25,25 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
+    <ul className="navbar">
+      <li className="barlink">
         {/* <NavLink exact to="/"><img src={navbarIcon} className={navImage} /></NavLink> */}
-        Nav Icon goes here but it's too big to deal with pre styling lol
+        Nav Icon
       </li>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+      <li className="barlink">
+        <NavLink exact to="/" style={({ isActive }) => ({
+              color: '#fff',
+              background: isActive ? '#616161' : '#424242',
+            })}>Home</NavLink>
       </li>
-      <li>
+      <li className="barlink">
         {isLoaded && sessionLinks}
       </li>
-      <li>
-        <NavLink exact to="/songs/new">Upload</NavLink>
+      <li className="barlink">
+        <NavLink exact to="/songs/new" style={({ isActive }) => ({
+              color: '#fff',
+              background: isActive ? '#616161' : '#424242',
+            })}>Upload</NavLink>
       </li>
     </ul>
   );
