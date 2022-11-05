@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { createSong } from '../../store/songs';
 
+
 const CreateSongForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -10,6 +11,7 @@ const CreateSongForm = () => {
     const [url, setUrl] = useState('');
     const [description, setDescription] = useState('');
     const [previewImage, setPreviewImage] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const updateTitle = (e) => setTitle(e.target.value);
     const updateUrl = (e) => setUrl(e.target.value);
@@ -18,6 +20,7 @@ const CreateSongForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors([]);
 
         const payload = {
             title,
@@ -26,7 +29,13 @@ const CreateSongForm = () => {
             previewImage
         };
 
-        let createdSong = await dispatch(createSong(payload));
+        let createdSong = await dispatch(createSong(payload)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+                let foundErrors = Object.values(data.errors);
+                setErrors(foundErrors);
+            }
+        });
         if (createdSong) {
             history.push(`/songs/${createdSong.id}`);
         }
@@ -39,6 +48,11 @@ const CreateSongForm = () => {
     return (
     <div>
         <form onSubmit={handleSubmit} >
+            <ul>
+                {errors && errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
             <input 
                 type="text"
                 placeholder="Title"

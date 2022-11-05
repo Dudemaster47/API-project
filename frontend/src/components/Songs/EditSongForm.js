@@ -11,6 +11,8 @@ const EditSongForm = () => {
     const [url, setUrl] = useState('');
     const [description, setDescription] = useState('');
     const [previewImage, setPreviewImage] = useState('');
+    const [errors, setErrors] = useState([]);
+
 
     const updateTitle = (e) => setTitle(e.target.value);
     const updateUrl = (e) => setUrl(e.target.value);
@@ -20,6 +22,7 @@ const EditSongForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setErrors([]);
         const payload = {
             title,
             url,
@@ -27,10 +30,17 @@ const EditSongForm = () => {
             previewImage
         };
 
-        let updatedSong = await dispatch(editSong(songId, payload));
+        let updatedSong = await dispatch(editSong(songId, payload)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+                let foundErrors = Object.values(data.errors);
+                setErrors(foundErrors);
+            }
+        });;
         if (updatedSong) {
             history.push(`/songs/${updatedSong?.id}`);
         }
+        
     };
 
     const handleCancelClick = (e) => {
@@ -40,6 +50,11 @@ const EditSongForm = () => {
     return (
     <div>
         <form onSubmit={handleSubmit} >
+            <ul>
+                {errors && errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
             <input 
                 type="text"
                 placeholder="Title"
