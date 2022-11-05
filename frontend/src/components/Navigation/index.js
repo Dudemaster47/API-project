@@ -19,7 +19,10 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signup" style={({ isActive }) => ({
+              color: '#fff',
+              background: isActive ? '#616161' : '#424242',
+            })}>Sign Up</NavLink>
       </>
     );
   }
