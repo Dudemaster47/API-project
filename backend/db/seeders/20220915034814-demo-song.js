@@ -6,27 +6,27 @@ return queryInterface.bulkInsert('Songs', [
       {
         userId: 1,
         albumId: 1,
-        title: 'The Song That Never Ends',
-        description: "The Shepherd Tone, playing for 20 hours",
-        url: 'fake.fakeriffic.gov',
-        previewImage: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Shepard_Tones_spectrum_linear_scale.png'
+        title: 'Shimmer Argentum',
+        description: "A Song for Silver",
+        url: 'https://dudemastersongbucket.s3.amazonaws.com/Shimmer_Argentum_reverb.mp3',
+        previewImage: 'https://dudemastersongbucket.s3.amazonaws.com/shimmerargentum.png'
       },
       {
         userId: 2,
         albumId: 2,
         title: "4'33",
         description: "John Cage's undisputed masterpiece, performed live",
-        url: 'fake.fakeroni.edu',
+        url: 'https://dudemastersongbucket.s3.amazonaws.com/John+Cage+-+4-33.mp3',
         previewImage: 'https://i.scdn.co/image/ab67616d0000b273eea65d73bcb126fbd5995970'
       },
       {
         userId: 3,
         albumId: 3,
-        title: "Cows: The Moosical Overture",
-        description: "You've never heard barnyard noises quite like these",
-        url: 'fake.fakerella.net',
-        previewImage: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg'
-      }
+        title: "Industrial Wasteland",
+        description: "Evocative of the highways of northern New Jersey",
+        url: 'https://dudemastersongbucket.s3.amazonaws.com/Industrial+Wasteland.mp3',
+        previewImage: 'https://dudemastersongbucket.s3.amazonaws.com/BENICIACC.png'
+      },
     ], {});
   },
   
@@ -34,7 +34,7 @@ return queryInterface.bulkInsert('Songs', [
   async down (queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Songs', {
-      title: { [Op.in]: ['The Song That Never Ends', "4'33", 'Cows: The Moosical Overture'] }
+      title: { [Op.in]: ['Shimmer Argentum', "4'33", 'Industrial Wasteland'] }
     }, {});
   }
 };

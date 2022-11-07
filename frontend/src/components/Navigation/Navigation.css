@@ -1,0 +1,30 @@
+.navbar {
+    height: 60px;
+    list-style: none;
+    background-color: #3c3c3c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.barlink {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+    color: white;
+    font-family: sans-serif;
+    height: 60px;
+    width: 80px;
+}
+
+.navImage {
+    position: relative;
+    height: 60px;
+    object-fit: contain;
+    top: 2px;
+}
+

@@ -1,0 +1,30 @@
+.comment-img {
+    height: 80px;
+}
+
+.comment-box1 {
+    background-color: lightgray;
+    background: radial-gradient(lightgray, white)
+}
+
+
+.myButton2 {
+	background-color:#c21fa2;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:16px;
+	font-weight:bold;
+	padding:11px 30px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #000000;
+}
+.myButton2:hover {
+	background-color:#aa1002;
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
+}
