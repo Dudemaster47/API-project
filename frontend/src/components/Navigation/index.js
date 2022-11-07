@@ -51,7 +51,7 @@ function Navigation({ isLoaded }){
             })}>Upload</NavLink>
       </li>
       <li className="barlink">
-        <NavLink exact to="/songs/new" style={({ isActive }) => ({
+        <NavLink exact to="https://github.com/Dudemaster47/API-project" style={({ isActive }) => ({
               color: '#fff',
               background: isActive ? '#3c3c3c' : '#121212',
               textDecoration: 'none',
