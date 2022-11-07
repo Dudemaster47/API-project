@@ -42,22 +42,22 @@ const CreateCommentForm = () => {
     };
 
 return (
-    <div>
-        <form onSubmit={handleSubmit} >
+    <div className="form-box">
+        <h1 className="header-title">Enter your comment!</h1>
+        <form onSubmit={handleSubmit} className="song-form">
             <ul>
                 {errors && errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
-            <label htmlFor="bodytext">Enter your comment</label>
             <textarea 
                 value={body}
                 onChange={updateBody}
                 placeholder="Say something!"
                 required
             />
-            <button type="submit">Submit</button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
+            <button type="submit" className="myButton">Submit</button>
+            <button type="button" onClick={handleCancelClick} className="myButton">Cancel</button>
         </form>
     </div>
 )

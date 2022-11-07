@@ -44,22 +44,24 @@ const EditCommentForm = () => {
     return (
         
         <div>
-            <form onSubmit={handleSubmit} >
-                <ul>
+            <div className="form-box">
+                <h1 className="header-title">Edit your comment!</h1>
+                <form onSubmit={handleSubmit} className="song-form">
+                    <ul>
                     {errors && errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}
-                </ul>
-                <label htmlFor="bodytext">Enter your comment</label>
-                <textarea 
-                    value={body}
-                    onChange={updateBody}
-                    placeholder={body}
-                    required
-                />
-                <button type="submit">Submit</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
-            </form>
+                    </ul>
+                    <textarea 
+                        value={body}
+                        onChange={updateBody}
+                        placeholder="I can't get this to populate right and don't have the time or energy left to figure out how to do it"
+                        required
+                    />
+                    <button type="submit" className="myButton">Submit</button>
+                    <button type="button" onClick={handleCancelClick} className="myButton">Cancel</button>
+                </form>
+            </div>
         </div>
     )
 }

@@ -13,16 +13,18 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <ProfileButton user={sessionUser} className="prof-button" />
     );
   } else {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup" style={({ isActive }) => ({
+        <NavLink exact to="/signup" style={({ isActive }) => ({
               color: '#fff',
-              background: isActive ? '#3c3c3c' : '#121212',
+              background: '#3c3c3c',
               textDecoration: 'none',
+              marginLeft: '32px',
+              marginRight: '16px',
             })}>Sign Up</NavLink>
       </>
     );
@@ -36,19 +38,24 @@ function Navigation({ isLoaded }){
       <li className="barlink">
         <NavLink exact to="/" style={({ isActive }) => ({
               color: '#fff',
-              background: isActive ? '#3c3c3c' : '#121212',
+              background: '#3c3c3c',
               textDecoration: 'none',
             })}>Home</NavLink>
       </li>
       <li className="barlink">
-        {isLoaded && sessionLinks}
-      </li>
-      <li className="barlink">
         <NavLink exact to="/songs/new" style={({ isActive }) => ({
-              color: '#fff',
-              background: isActive ? '#3c3c3c' : '#121212',
-              textDecoration: 'none',
-            })}>Upload</NavLink>
+          color: '#fff',
+          background: '#3c3c3c',
+          textDecoration: 'none',
+        })}>Upload</NavLink>
+      </li>
+        <li className="barlink2">
+          {isLoaded && sessionLinks}
+        </li>
+      <li className="barlink">
+            <a href="https://github.com/Dudemaster47/API-project/tree/master" className="about">
+              About
+            </a>
       </li>
     </ul>
   );

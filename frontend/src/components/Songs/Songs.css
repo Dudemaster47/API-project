@@ -5,6 +5,13 @@
     margin-right: 5%;
 }
 
+.home-header {
+    margin-left: 12%;
+    font-family: sans-serif;
+    margin-bottom: -1%;
+    margin-top: 3%;
+}
+
 .songlink {
     height: 280px;
     width: 280px;

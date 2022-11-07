@@ -75,11 +75,11 @@ const AudioPlayer = ({song}) => {
             preload="metadata"
             onDurationChange={onDurationChangeHandler}
             ></audio>
-            <button className="forwardBackward" onClick={backThirty}><IoIosSkipBackward />Back 10</button>
+            <button className="forwardBackward" onClick={backThirty}><IoIosSkipBackward />10</button>
             <button onClick={toggleAudio} className="playPause"> 
-                { isPlaying ? <IoMdPause /> : <IoMdPlay />}
+                { isPlaying ? <IoMdPause className="pause" /> : <IoMdPlay className="play" />}
             </button>
-            <button className="forwardBackward" onClick={fwdThirty}><IoIosSkipForward />Forward 10</button>
+            <button className="forwardBackward" onClick={fwdThirty}><IoIosSkipForward />10</button>
 
             {/* current time */}
             <div className="currentTime">{calcTime(currentTime)} </div>
