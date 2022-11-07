@@ -50,6 +50,13 @@ function Navigation({ isLoaded }){
               textDecoration: 'none',
             })}>Upload</NavLink>
       </li>
+      <li className="barlink">
+        <NavLink exact to="/songs/new" style={({ isActive }) => ({
+              color: '#fff',
+              background: isActive ? '#3c3c3c' : '#121212',
+              textDecoration: 'none',
+            })}>About</NavLink>
+      </li>
     </ul>
   );
 }
