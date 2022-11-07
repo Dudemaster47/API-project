@@ -69,8 +69,8 @@ const SongDetail = () => {
                     <Link to={`/songs/${singleSong?.song.id}/comments`}><button className="myButton">Write A Comment...</button></Link>
                 </div>
                 <div className="option-bar">
-                    <Link to={`/songs/${singleSong?.song.id}/edit`}><button className="myButton">Edit</button></Link>
-                    <button onClick={deleteSong} className="myButton">Delete</button>
+                    <Link to={`/songs/${singleSong?.song.id}/edit`}><button className="myButton">Edit Song</button></Link>
+                    <button onClick={deleteSong} className="myButton">Delete Song</button>
                 </div>
             </div>
             <div className="song-bottom">

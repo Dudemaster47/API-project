@@ -49,60 +49,71 @@ const EditSongForm = () => {
     };
 
     return (
-    <div>
-        <form onSubmit={handleSubmit} >
+        <div className="form-box">
+        <h1 className="header-title">Edit Your Song!</h1>
+
+        <form onSubmit={handleSubmit} className="song-form">
             <ul>
                 {errors && errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
-            <input 
-                type="text"
-                placeholder="Title"
-                value={title}
-                onChange={updateTitle}
-                default={title}
-            />
-            <label htmlFor="song">Upload a song file</label>
-            {/* <input
-                type="file"
-                id="song"
-                accept="audio/*"
-                value={url}
-                onChange={updateUrl}
-            /> */}
-            <input 
-                type="text"
-                placeholder="Song"
-                required
-                value={url}
-                onChange={updateUrl}
-                default={url}
-            />
-            <textarea 
-                value={description}
-                onChange={updateDescription}
-                default={description}
-
-            />
+            <div className="form-item">
+                <input 
+                    type="text"
+                    placeholder="Title"
+                    required
+                    value={title}
+                    onChange={updateTitle}
+                
+                />
+            </div>
+            <div className="form-item">
+                <label htmlFor="song">Upload a song file</label>
+                {/* <input
+                    type="file"
+                    id="song"
+                    accept="audio/*"
+                    value={url}
+                    onChange={updateUrl}
+                /> */}
+                <input 
+                    type="text"
+                    placeholder="Song"
+                    required
+                    value={url}
+                    onChange={updateUrl}
+                />
+            </div>
+            <div className="form-item">
+                <textarea 
+                    value={description}
+                    onChange={updateDescription}
+                    placeholder="Enter description"
+                    required
+                />
+            </div>
+            <div className="form-item">
             <label htmlFor="img">Upload an image file</label>
-            {/* <input
-                type="file"
-                id="img"
-                accept="img/*"
-                value={previewImage}
-                onChange={updatePreviewImage}
-            /> */}
-            <input 
-                type="text"
-                placeholder="Image"
-                required
-                value={previewImage}
-                onChange={updatePreviewImage}
-                default={previewImage}
-            />
-            <button type="submit">Submit</button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
+                {/* <input
+                    type="file"
+                    id="img"
+                    accept="img/*"
+                    value={previewImage}
+                    onChange={updatePreviewImage}
+                /> */}
+                <input 
+                    type="text"
+                    placeholder="Image"
+                    required
+                    value={previewImage}
+                    onChange={updatePreviewImage}
+                />
+            </div>
+            <div className="form-buttons">
+            <button type="submit" className="myButton">Submit</button>
+            <button type="button" onClick={handleCancelClick} className="myButton">Cancel</button>
+            </div>
         </form>
     </div>
     );

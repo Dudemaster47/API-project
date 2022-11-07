@@ -4,6 +4,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { deleteCommentById } from "../../store/comments";
+import "./comments.css";
 
 const Comments = ({song}) => {
     const {id} = useParams();
@@ -30,13 +31,15 @@ const Comments = ({song}) => {
     return (
         <div>
             {filteredComments && filteredComments.map((el) => 
-            <div key={el.id}>
-            {el.User?.username} 
-            <br></br> 
-            {el.body}
-            <br></br>
-            <Link to={`/comments/${el.id}/edit`}><button>EDIT</button></Link>
-            <button onClick={(e) => deleteComment(e, el)}>DELETE</button>
+            <div key={el.id} className="comment-box1">
+                <div className="comment-content">
+                    <div className="comment-user">{el.User?.username}</div> 
+                    <div className="comment-body">{el.body}</div>
+                </div>
+                <div className="comment-buttons">
+                    <Link to={`/comments/${el.id}/edit`}><button className="myButton2">Edit Comment</button></Link>
+                    <button className="myButton2" onClick={(e) => deleteComment(e, el)}>Delete Comment</button>
+                </div>
             </div>
             )}
         </div>

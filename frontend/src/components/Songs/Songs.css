@@ -33,7 +33,6 @@
 }
 
 .song-page {
-    border: 4px solid red;
     display: flex;
     flex-direction: column;
     margin-right: 19%;
@@ -42,7 +41,6 @@
 }
 
 .song-top {
-    border: 4px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,35 +49,31 @@
 }
 
 .song-middle {
-    border: 4px solid tan;
     display: flex;
     flex-direction: column;
     padding-left: 2%;
 }
 
 .song-bottom {
-    border: 4px solid gray;
     display: flex;
     flex-direction: row;
     padding-left: 2%;
 }
 
 .song-info {
-    border: 4px solid blue;
     background-color: transparent;
     color: white;
     font-family: sans-serif;
 }
 
 .audio-player {
-    border: 4px solid green;
     flex-grow: 3;
     background-color: transparent;
     margin: 15px;
 }
 
 .option-bar {
-    border: 4px solid orange;
+    padding-left: 20px;
 }
 
 .infobox1 {
@@ -93,7 +87,6 @@
 }
 
 .info-img {
-    border: 4px solid yellow;
     height: 280px;
     width: 280px;
     margin: 10px;
@@ -101,22 +94,20 @@
 
 .description {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .comment-box {
-    border: 4px solid purple;
     display: flex;
     flex-direction: column;
 }
 
 .artist-box {
-    border: 4px solid brown;
     padding: 15px;
 }
 
 .artist-img {
-    border: 4px solid gray;
+    border-radius: 50%;
     height: 100px;
     width: 100px;
 }
@@ -141,4 +132,31 @@
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+.song-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.header-title {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.form-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-box {
+    font-family: sans-serif;
+}
+
+.form-buttons {
+    text-align: center;
 }
