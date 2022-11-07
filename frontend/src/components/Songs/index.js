@@ -13,16 +13,20 @@ const Songs = () => {
         dispatch(getAllSongs());
     }, [dispatch])
 
+    const filteredSongs = songs.filter((el) => el.id);
+
     return ( 
-        <>
-            {songs && songs.map((el) => 
+        <div className="songcontainer">
+            {filteredSongs && filteredSongs.map((el) => 
             <div className="songlink">
-                <Link key={el.id} to={`/songs/${el.id}`}>
-                    <div>{el.title}</div>
-                    <img src={el.previewImage} />
+                <Link key={el.id} to={`/songs/${el.id}`} style={{textDecoration: "none"}}>
+                    <div key={el.id} className="songbox">
+                    <img className="home-img" src={el.previewImage} />
+                    <h3 className="home-title">{el.title}</h3>
+                    </div>
                 </Link>
             </div>)}
-        </>
+        </div>
     )
 }
 

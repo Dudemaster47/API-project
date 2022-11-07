@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from "react";
 import {IoMdPlay, IoMdPause, IoIosSkipBackward, IoIosSkipForward} from "react-icons/io"
-import styles from "./AudioPlayer.css"
+import "./AudioPlayer.css"
 
 const AudioPlayer = ({song}) => {
     //state
@@ -68,29 +68,29 @@ const AudioPlayer = ({song}) => {
     //however... album and playlist functionality aren't implemented yet.
     //so! they'll just be skip forward/back for now.
     return (
-        <div className={styles.audioPlayer}>
+        <div className="audioPlayer">
             <audio 
             ref={audioPlayer} 
             src={song?.url} 
             preload="metadata"
             onDurationChange={onDurationChangeHandler}
             ></audio>
-            <button className={styles.forwardBackward} onClick={backThirty}><IoIosSkipBackward />Back 10</button>
-            <button onClick={toggleAudio} className={styles.playPause}> 
+            <button className="forwardBackward" onClick={backThirty}><IoIosSkipBackward />Back 10</button>
+            <button onClick={toggleAudio} className="playPause"> 
                 { isPlaying ? <IoMdPause /> : <IoMdPlay />}
             </button>
-            <button className={styles.forwardBackward} onClick={fwdThirty}><IoIosSkipForward />Forward 10</button>
+            <button className="forwardBackward" onClick={fwdThirty}><IoIosSkipForward />Forward 10</button>
 
             {/* current time */}
-            <div className={styles.currentTime}>{calcTime(currentTime)} </div>
+            <div className="currentTime">{calcTime(currentTime)} </div>
 
             {/* progress bar */}
             <div>
-                <input type="range" className={styles.progressBar} defaultValue="0" ref={progressBar} onChange={changeRange} />
+                <input type="range" className="progressBar" defaultValue="0" ref={progressBar} onChange={changeRange} />
             </div>
 
             {/* duration */}
-            <div className={styles.duration}>{!isNaN(duration) && calcTime(duration)}</div>
+            <div className="duration">{!isNaN(duration) && calcTime(duration)}</div>
         </div>
     );
 }

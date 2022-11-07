@@ -38,7 +38,6 @@ export const getSongInfo = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/songs/${id}`);
 
     const data = await response.json();
-    console.log(data);
     dispatch(addSongs(data));
 }
 

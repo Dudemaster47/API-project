@@ -5,6 +5,8 @@ import { getSongInfo } from "../../store/songs";
 import { deleteSongById } from "../../store/songs";
 import Comments from "../Comments";
 import AudioPlayer from "../AudioPlayer";
+import "./Songs.css";
+
 
 
 const SongDetail = () => {
@@ -47,31 +49,42 @@ const SongDetail = () => {
     }
 
     return (
-        <>
-            <div>
-                <div>{singleSong?.song.title}</div>
-           
-                <div>{singleSong?.album.title}</div>
-         
-                <div>{singleSong?.artist.username}</div>
-
-                <div>{singleSong?.song.description}</div>
-
-                <img src={singleSong?.song.previewImage}></img>
-
-                <AudioPlayer song={singleSong?.song}/>
-
-                <div>
-                    <Link to={`/songs/${singleSong?.song.id}/edit`}><button>Edit</button></Link>
-                    <Link to={`/songs/${singleSong?.song.id}/comments`}><button>Comment</button></Link>
-                    <button onClick={deleteSong}>Delete</button>
+        <div className="song-page">
+            <div className="song-top">
+                <div className="song-info">
+                    <div className="infobox1"><h2>{singleSong?.song.title}</h2></div>
+                    <div className="infobox2">{singleSong?.artist.username}</div>
+                    <div className="infobox2">In Album: {singleSong?.album.title}</div>
+                    
                 </div>
 
-                <div>
-                    {singleSong?.song && <Comments song={singleSong?.song} />}
+                <div className="audio-player">
+                    <AudioPlayer song={singleSong?.song}/>
+                </div>
+
+                <img src={singleSong?.song.previewImage} className="info-img"></img>
+            </div>
+            <div className="song-middle">
+                <div className="comment-bar">
+                    <Link to={`/songs/${singleSong?.song.id}/comments`}><button className="myButton">Write A Comment...</button></Link>
+                </div>
+                <div className="option-bar">
+                    <Link to={`/songs/${singleSong?.song.id}/edit`}><button className="myButton">Edit</button></Link>
+                    <button onClick={deleteSong} className="myButton">Delete</button>
                 </div>
             </div>
-        </>
+            <div className="song-bottom">
+                <div className="artist-box">
+                    <img src={singleSong?.artist.previewImage} className="artist-img"></img>
+                    <div className="artist-name">{singleSong?.artist.username}</div>
+                </div>
+
+                <div className="comment-box">
+                    <div className="description">{singleSong?.song.description}</div>
+                    <div className="comment">{singleSong?.song && <Comments song={singleSong?.song} />}</div>
+                </div>
+            </div>
+        </div>
     )
 }
 

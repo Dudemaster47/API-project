@@ -21,7 +21,8 @@ function Navigation({ isLoaded }){
         <LoginFormModal />
         <NavLink to="/signup" style={({ isActive }) => ({
               color: '#fff',
-              background: isActive ? '#616161' : '#424242',
+              background: isActive ? '#3c3c3c' : '#121212',
+              textDecoration: 'none',
             })}>Sign Up</NavLink>
       </>
     );
@@ -30,13 +31,13 @@ function Navigation({ isLoaded }){
   return (
     <ul className="navbar">
       <li className="barlink">
-        {/* <NavLink exact to="/"><img src={navbarIcon} className={navImage} /></NavLink> */}
-        Nav Icon
+        <NavLink exact to="/"><img src={navbarIcon} className="navImage" /></NavLink>
       </li>
       <li className="barlink">
         <NavLink exact to="/" style={({ isActive }) => ({
               color: '#fff',
-              background: isActive ? '#616161' : '#424242',
+              background: isActive ? '#3c3c3c' : '#121212',
+              textDecoration: 'none',
             })}>Home</NavLink>
       </li>
       <li className="barlink">
@@ -45,7 +46,8 @@ function Navigation({ isLoaded }){
       <li className="barlink">
         <NavLink exact to="/songs/new" style={({ isActive }) => ({
               color: '#fff',
-              background: isActive ? '#616161' : '#424242',
+              background: isActive ? '#3c3c3c' : '#121212',
+              textDecoration: 'none',
             })}>Upload</NavLink>
       </li>
     </ul>

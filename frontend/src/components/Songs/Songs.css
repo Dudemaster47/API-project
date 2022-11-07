@@ -1,9 +1,144 @@
-.songlink {
-    height: 20%;
-    width: auto;
+.songcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 8%;
+    margin-right: 5%;
 }
 
-img {
+.songlink {
+    height: 280px;
+    width: 280px;
+    flex-direction: row;
+    margin: 3%;
+}
+
+.songbox {
+    height: 280px;
+    width: 280px;
+}
+
+.home-img {
     height: 100%;
-    width: auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.home-title {
+    text-align: left;
+    margin: -1%;
+    font-weight: lighter;
+    color: darkgray;
+    text-decoration: none;
+    font-family: sans-serif
+}
+
+.song-page {
+    border: 4px solid red;
+    display: flex;
+    flex-direction: column;
+    margin-right: 19%;
+    margin-left: 19%;
+    font-family: sans-serif;
+}
+
+.song-top {
+    border: 4px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background:linear-gradient(to right bottom, darkgray 15%, #000000 100%);
+    background-color: darkgray;
+}
+
+.song-middle {
+    border: 4px solid tan;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+}
+
+.song-bottom {
+    border: 4px solid gray;
+    display: flex;
+    flex-direction: row;
+    padding-left: 2%;
+}
+
+.song-info {
+    border: 4px solid blue;
+    background-color: transparent;
+    color: white;
+    font-family: sans-serif;
+}
+
+.audio-player {
+    border: 4px solid green;
+    flex-grow: 3;
+    background-color: transparent;
+    margin: 15px;
+}
+
+.option-bar {
+    border: 4px solid orange;
+}
+
+.infobox1 {
+    background-color: #424242;
+    margin: 5px;
+    font-weight: normal;
+}
+.infobox2 {
+    background-color: #424242;
+    margin: 5px;
+}
+
+.info-img {
+    border: 4px solid yellow;
+    height: 280px;
+    width: 280px;
+    margin: 10px;
+}
+
+.description {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.comment-box {
+    border: 4px solid purple;
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-box {
+    border: 4px solid brown;
+    padding: 15px;
+}
+
+.artist-img {
+    border: 4px solid gray;
+    height: 100px;
+    width: 100px;
+}
+
+
+.myButton {
+	background-color:#eb5834;
+	border-radius:42px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:16px;
+	font-weight:bold;
+	padding:11px 30px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #000000;
+}
+.myButton:hover {
+	background-color:#ff0000;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
 }
