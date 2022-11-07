@@ -1,7 +1,7 @@
 //create the function that the component consists of
 import { getAllComments } from "../../store/comments"
 import { useDispatch, useSelector} from 'react-redux';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { deleteCommentById } from "../../store/comments";
 import "./comments.css";
@@ -9,15 +9,22 @@ import "./comments.css";
 const Comments = ({song}) => {
     const {id} = useParams();
     const dispatch = useDispatch();
+    const [errors, setErrors] = useState([]);
 
     const comments = useSelector(state => Object.values(state.comment));
     const filteredComments = comments.filter(el => (el.songId === song.id));
     
     const deleteComment = (e, el) => {
         e.preventDefault();
-        
-        dispatch(deleteCommentById(el.id));
-        
+        setErrors([]);
+
+        dispatch(deleteCommentById(el.id)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+                let foundErrors = Object.values(data.errors);
+                setErrors(foundErrors);
+            };
+        });
     };
 
     useEffect(() => {
@@ -30,8 +37,14 @@ const Comments = ({song}) => {
 
     return (
         <div>
+            
             {filteredComments && filteredComments.map((el) => 
             <div key={el.id} className="comment-box1">
+                <ul>
+                {errors && errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+                </ul>
                 <div className="comment-content">
                     <div className="comment-user">{el.User?.username}</div> 
                     <div className="comment-body">{el.body}</div>

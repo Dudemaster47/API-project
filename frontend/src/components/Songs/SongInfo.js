@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { getSongInfo } from "../../store/songs";
 import { deleteSongById } from "../../store/songs";
@@ -14,15 +14,23 @@ const SongDetail = () => {
     const { songId } = useParams();
     const history = useHistory();
     const song = useSelector(state => state.song);
+    const [errors, setErrors] = useState([]);
 
     const allSongs = Object.values(song)
 
     const deleteSong = (e) => {
         e.preventDefault();
+        setErrors([]);
 
-        dispatch(deleteSongById(songId));
-        history.push(`/songs/`);
-        
+        dispatch(deleteSongById(songId)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+                let foundErrors = Object.values(data.errors);
+                setErrors(foundErrors);
+            } else {
+                history.push(`/songs/`);
+            };
+        });
     };
 
     useEffect(() => {
@@ -65,6 +73,11 @@ const SongDetail = () => {
                 <img src={singleSong?.song.previewImage} className="info-img"></img>
             </div>
             <div className="song-middle">
+                <ul>
+                    {errors && errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
                 <div className="comment-bar">
                     <Link to={`/songs/${singleSong?.song.id}/comments`}><button className="myButton">Write A Comment...</button></Link>
                 </div>

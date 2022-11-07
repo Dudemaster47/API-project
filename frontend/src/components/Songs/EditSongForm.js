@@ -36,7 +36,7 @@ const EditSongForm = () => {
                 let foundErrors = Object.values(data.errors);
                 setErrors(foundErrors);
             }
-        });;
+        });
         if (updatedSong) {
             history.push(`/songs/${updatedSong?.id}`);
         }

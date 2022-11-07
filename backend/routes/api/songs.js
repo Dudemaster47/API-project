@@ -359,7 +359,7 @@ router.delete('/:songId', requireAuth, async (req, res, next) => {
         const err = new Error('Unauthorized user');
         err.status = 403;
         err.title = 'Unauthorized user';
-        err.errors = ['This is not your comment.'];
+        err.errors = ['This is not your song.'];
         return next(err);
     }
 
