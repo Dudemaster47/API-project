@@ -26,29 +26,37 @@ function LoginFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form-box" style={{
+      paddingLeft: '32px',
+      paddingRight: '32px',
+      paddingBottom: '12px',
+    }}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        Username or Email
+      <div className="form-item">
+        <label>
+          Username or Email
+        </label>
         <input
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
-      </label>
-      <label>
+      </div>
+      <div className="form-item">
+        <label>
         Password
+        </label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Log In</button>
+      </div>
+      <button type="submit" className="myButton">Log In</button>
     </form>
   );
 }
