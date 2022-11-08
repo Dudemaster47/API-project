@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { FaAngleDown } from 'react-icons/fa'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -38,6 +39,8 @@ function ProfileButton({ user }) {
         backgroundColor: '#3c3c3c',
         fontSize: '16px',
         cursor: 'pointer',
+        display: "flex",
+        flexDirection: 'row',
       }}>
         <i className="fas fa-user-circle" style={{
           display:'inline',
@@ -46,10 +49,10 @@ function ProfileButton({ user }) {
         <div style={{
           display:'inline',
         }}>{user.username}</div>
-        <p style={{
+        <FaAngleDown style={{
           display:'inline',
           paddingLeft: '10px',
-        }}>v</p>
+        }}/>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
