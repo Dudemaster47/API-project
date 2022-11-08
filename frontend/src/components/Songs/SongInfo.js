@@ -24,14 +24,16 @@ const SongDetail = () => {
 
         dispatch(deleteSongById(songId)).catch(async (res) => {
             const data = await res.json();
-            if (data && data.errors) {
+            if (data.errors) {
                 let foundErrors = Object.values(data.errors);
                 setErrors(foundErrors);
-            } else {
-                history.push(`/songs/`);
-            };
+                alert(foundErrors.toString());
+                history.push('/songs/');
+            }
         });
+        history.push('/songs/');
     };
+
 
     useEffect(() => {
         dispatch(getSongInfo(songId));
@@ -73,11 +75,6 @@ const SongDetail = () => {
                 <img src={singleSong?.song.previewImage} className="info-img"></img>
             </div>
             <div className="song-middle">
-                <ul>
-                    {errors && errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
                 <div className="comment-bar">
                     <Link to={`/songs/${singleSong?.song.id}/comments`}><button className="myButton">Write A Comment...</button></Link>
                 </div>

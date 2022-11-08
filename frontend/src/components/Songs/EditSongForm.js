@@ -13,7 +13,6 @@ const EditSongForm = () => {
     const [previewImage, setPreviewImage] = useState('');
     const [errors, setErrors] = useState([]);
 
-
     const updateTitle = (e) => setTitle(e.target.value);
     const updateUrl = (e) => setUrl(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
@@ -32,9 +31,12 @@ const EditSongForm = () => {
 
         let updatedSong = await dispatch(editSong(songId, payload)).catch(async (res) => {
             const data = await res.json();
+            console.log(data);
+            console.log(data.errors, "wtf")
             if (data && data.errors) {
                 let foundErrors = Object.values(data.errors);
                 setErrors(foundErrors);
+                console.log(foundErrors);
             }
         });
         if (updatedSong) {

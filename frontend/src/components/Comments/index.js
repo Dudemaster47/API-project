@@ -23,6 +23,7 @@ const Comments = ({song}) => {
             if (data && data.errors) {
                 let foundErrors = Object.values(data.errors);
                 setErrors(foundErrors);
+                alert(foundErrors.toString());
             };
         });
     };
@@ -37,14 +38,8 @@ const Comments = ({song}) => {
 
     return (
         <div>
-            
             {filteredComments && filteredComments.map((el) => 
             <div key={el.id} className="comment-box1">
-                <ul>
-                {errors && errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-                </ul>
                 <div className="comment-content">
                     <div className="comment-user">{el.User?.username}</div> 
                     <div className="comment-body">{el.body}</div>

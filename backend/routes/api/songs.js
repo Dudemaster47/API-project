@@ -325,7 +325,7 @@ router.put(
             const err = new Error('Unauthorized user');
             err.status = 403;
             err.title = 'Unauthorized user';
-            err.erors = ['This is not your song.'];
+            err.errors = ['This is not your song.'];
             return next(err);
         }
 

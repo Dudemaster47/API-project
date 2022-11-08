@@ -31,10 +31,12 @@ const CreateSongForm = () => {
 
         let createdSong = await dispatch(createSong(payload)).catch(async (res) => {
             const data = await res.json();
+            console.log(data, "wtfff");
+            console.log(data.errors);
             if (data && data.errors) {
                 let foundErrors = Object.values(data.errors);
                 setErrors(foundErrors);
-            }
+            };
         });
 
         if (createdSong) {
