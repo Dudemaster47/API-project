@@ -1,7 +1,7 @@
 ## Documentation
 
 ## Link to Live Site
-https://soundcloun-clone.herokuapp.com/
+CURRENTLY NOT HOSTED
 
 ## Link to the Github Repo
 How are you reading this if you're not already there?
