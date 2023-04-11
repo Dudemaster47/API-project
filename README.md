@@ -1,7 +1,7 @@
 ## Documentation
 
 ## Link to Live Site
-CURRENTLY NOT HOSTED
+https://soundcloun-clone.herokuapp.com/
 
 ## Link to the Github Repo
 How are you reading this if you're not already there?
@@ -64,6 +64,6 @@ Listed here are the various bits and bobs of tech used to create Soundcloun:
 
 ## Technical Implementation Details
 
-Imma be real, the biggest challenges I faced involved literally everything involving redux. Turns out, I don't really get redux yet and it showed with my clumsy handling of state repeatedly over the course of the project.
-
-I can't really point to good, specific examples because most of my issues were ultimately stemming from my overall lack of comprehension of and experience with redux as a whole, as well as me making stupid typos that were very quickly fixed once recognized. Ultimately the whole dang front end is an example of the things I found challenging, so, y'know. Pick through that and copy any bit of code and you'll probably have found something I struggled with.
+IT TURNS OUT RETURNING TO A THING YOU DID MONTHS AGO AND FOR SOME ASININE REASON,
+DID NOT WRITE DOWN ANY NOTES ON HOW THESE THINGS ARE SUPPOSED TO INTERACT WITH
+EACH OTHER? IT IS KIND OF TERRIBLE. WHY DID I DO THAT.
