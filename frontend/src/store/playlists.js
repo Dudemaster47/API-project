@@ -108,7 +108,7 @@ const playlistReducer = (state = initialState, action) => {
                     ...action.payload
                 }
             };
-            case DELETE_PLAYLISTS:
+            case DELETE_PLAYLIST:
                 newState = {...state};
                 delete newState[action.id];
                 return newState;

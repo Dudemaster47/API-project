@@ -11,6 +11,7 @@ import CreateSongForm from "./components/Songs/CreateSongForm";
 import EditSongForm from "./components/Songs/EditSongForm";
 import CreateCommentForm from "./components/Comments/CreateCommentForm";
 import EditCommentForm from "./components/Comments/EditCommentForm";
+import Albums from "./components/Albums";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,10 +43,23 @@ function App() {
           <Route key={6} path="/comments/:commentId/edit">
             <EditCommentForm />
           </Route>
-          <Route key={7} path="/">
+          <Route key={7} path="/albums">
+            <Albums />
+          </Route>
+          <Route key={8} path="/albums/:albumId">
+          </Route>
+          <Route key={9} path="/albums/:albumId/edit">
+          </Route>
+          <Route key={10} path="/playlists">
+          </Route>
+          <Route key={11} path="playlists/:playlistId">
+          </Route>
+          <Route key={12} path="playlists/:playlistId/edit">
+          </Route>
+          <Route key={13} path="/">
             <Songs />
           </Route>
-          <Route key={8}>
+          <Route key={14}>
             <h3>404 not found</h3>
           </Route>
         </Switch>

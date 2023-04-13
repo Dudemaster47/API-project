@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { FaAngleDown } from 'react-icons/fa'
+import { Link } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -58,6 +59,20 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
+          <li>
+            <Link to={`/albums`} style={{
+              marginLeft: '16px',
+              marginRight: '16px',
+              border: 'none',
+              color: 'white',
+              backgroundColor: '#5f5f5f',
+              fontSize: '16px',
+              cursor: 'pointer',
+              textDecoration: 'none'
+            }}>
+              {user.username}'s Albums
+            </Link>
+          </li>
           <li>
             <button onClick={logout} style={{
               marginLeft: '16px',

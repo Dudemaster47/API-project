@@ -1,0 +1,1 @@
+//this displays an album's specific info

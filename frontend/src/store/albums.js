@@ -108,7 +108,7 @@ const albumReducer = (state = initialState, action) => {
                     ...action.payload
                 }
             };
-            case DELETE_ALBUMS:
+            case DELETE_ALBUM:
                 newState = {...state};
                 delete newState[action.id];
                 return newState;

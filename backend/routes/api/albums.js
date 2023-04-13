@@ -10,7 +10,7 @@ router.get(
     '/', async (req, res, next) => {
         const albums = await Album.findAll();
 
-        return res.json({albums});
+        return res.json(albums);
     }
 );
 
