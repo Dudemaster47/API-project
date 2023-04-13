@@ -12,6 +12,8 @@ import EditSongForm from "./components/Songs/EditSongForm";
 import CreateCommentForm from "./components/Comments/CreateCommentForm";
 import EditCommentForm from "./components/Comments/EditCommentForm";
 import Albums from "./components/Albums";
+import Playlists from "./components/Playlists";
+import SongsList from "./components/Songs/SongsList";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,38 +30,42 @@ function App() {
           <Route key={1} path="/signup">
             <SignupFormPage />
           </Route>
-          <Route key={2} path="/songs/new">
+          <Route key={2} path="/songs">
+            <SongsList />
+          </Route>
+          <Route key={3} path="/songs/new">
             <CreateSongForm />
           </Route>
-          <Route key={3} path="/songs/:songId/edit">
+          <Route key={4} path="/songs/:songId/edit">
             <EditSongForm />
           </Route>
-          <Route key={4} path="/songs/:songId/comments">
+          <Route key={5} path="/songs/:songId/comments">
             <CreateCommentForm />
           </Route>
-          <Route key={5} path="/songs/:songId">
+          <Route key={6} path="/songs/:songId">
             <SongDetail />
           </Route>
-          <Route key={6} path="/comments/:commentId/edit">
+          <Route key={7} path="/comments/:commentId/edit">
             <EditCommentForm />
           </Route>
-          <Route key={7} path="/albums">
+          <Route key={8} path="/albums">
             <Albums />
           </Route>
-          <Route key={8} path="/albums/:albumId">
+          <Route key={9} path="/albums/:albumId">
           </Route>
-          <Route key={9} path="/albums/:albumId/edit">
+          <Route key={10} path="/albums/:albumId/edit">
           </Route>
-          <Route key={10} path="/playlists">
+          <Route key={11} path="/playlists">
+            <Playlists />
           </Route>
-          <Route key={11} path="playlists/:playlistId">
+          <Route key={12} path="playlists/:playlistId">
           </Route>
-          <Route key={12} path="playlists/:playlistId/edit">
+          <Route key={13} path="playlists/:playlistId/edit">
           </Route>
-          <Route key={13} path="/">
+          <Route key={14} path="/">
             <Songs />
           </Route>
-          <Route key={14}>
+          <Route key={15}>
             <h3>404 not found</h3>
           </Route>
         </Switch>

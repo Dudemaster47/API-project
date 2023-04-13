@@ -14,8 +14,6 @@ const Albums = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const albums = useSelector(state => Object.values(state.album));
-    const songs = useSelector(state => Object.values(state.song));
-
 
     useEffect(() => {
         dispatch(getAllAlbums());

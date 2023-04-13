@@ -60,6 +60,20 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
+            <Link to={`/songs`} style={{
+              marginLeft: '16px',
+              marginRight: '16px',
+              border: 'none',
+              color: 'white',
+              backgroundColor: '#5f5f5f',
+              fontSize: '16px',
+              cursor: 'pointer',
+              textDecoration: 'none'
+            }}>
+              {user.username}'s Songs
+            </Link>
+          </li>
+          <li>
             <Link to={`/albums`} style={{
               marginLeft: '16px',
               marginRight: '16px',
@@ -71,6 +85,20 @@ function ProfileButton({ user }) {
               textDecoration: 'none'
             }}>
               {user.username}'s Albums
+            </Link>
+          </li>
+          <li>
+            <Link to={`/playlists`} style={{
+              marginLeft: '16px',
+              marginRight: '16px',
+              border: 'none',
+              color: 'white',
+              backgroundColor: '#5f5f5f',
+              fontSize: '16px',
+              cursor: 'pointer',
+              textDecoration: 'none'
+            }}>
+              {user.username}'s Playlists
             </Link>
           </li>
           <li>

@@ -1,39 +1,38 @@
-//this displays all of the current user's playlists
-
-import { getAllPlaylists } from "../../store/playlists";
+import { getAllSongs } from "../../store/songs";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 
-const Playlists = () => {
+
+const SongsList = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const playlists = useSelector(state => Object.values(state.playlist));
+    const songs = useSelector(state => Object.values(state.song));
 
     useEffect(() => {
-        dispatch(getAllPlaylists());
-    }, [dispatch]);
+        dispatch(getAllSongs());
+    }, [dispatch])
 
-    const filteredPlaylists = playlists.filter((el) => el.userId === sessionUser.id);
+    const filteredSongs = songs.filter((el) => el.userId === sessionUser.id);
 
     return (
         <>
             <div className="albumList-header">
-                <h1>{sessionUser.username}'s Playlists!!</h1>
+                <h1>{sessionUser.username}'s Songs!!</h1>
             </div>
             <div>
                 <p>insert user's album/playlist/song list component here</p>
             </div>
-            {filteredPlaylists && filteredPlaylists.map((el) =>
+            {filteredSongs && filteredSongs.map((el) =>
             <div className="albumList-albumBox">
-                <p>playlist image</p>
+                <p>song image</p>
                 <p>{el.title}</p>
                 <p>don't feel ambitious enough for tracks here. these are all links</p>
-                <button>edit playlist</button>
-                <button>delete playlist</button>
+                <button>edit song</button>
+                <button>delete song</button>
             </div>
             )}
         </>
     )
-};
+}
 
-export default Playlists;
+export default SongsList;
