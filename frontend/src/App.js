@@ -12,6 +12,7 @@ import EditSongForm from "./components/Songs/EditSongForm";
 import CreateCommentForm from "./components/Comments/CreateCommentForm";
 import EditCommentForm from "./components/Comments/EditCommentForm";
 import Albums from "./components/Albums";
+import AlbumDetails from "./components/Albums/AlbumDetails";
 import Playlists from "./components/Playlists";
 import SongsList from "./components/Songs/SongsList";
 
@@ -30,37 +31,38 @@ function App() {
           <Route key={1} path="/signup">
             <SignupFormPage />
           </Route>
-          <Route key={2} path="/songs">
-            <SongsList />
-          </Route>
-          <Route key={3} path="/songs/new">
-            <CreateSongForm />
-          </Route>
-          <Route key={4} path="/songs/:songId/edit">
-            <EditSongForm />
-          </Route>
-          <Route key={5} path="/songs/:songId/comments">
+          <Route key={2} path="/songs/:songId/comments">
             <CreateCommentForm />
           </Route>
-          <Route key={6} path="/songs/:songId">
+          <Route key={3} path="/songs/:songId/edit">
+            <EditSongForm />
+          </Route>
+          <Route key={4} path="/songs/:songId">
             <SongDetail />
+          </Route>
+          <Route key={5} path="/songs/new">
+            <CreateSongForm />
+          </Route>
+          <Route key={6} path="/songs">
+            <SongsList />
           </Route>
           <Route key={7} path="/comments/:commentId/edit">
             <EditCommentForm />
           </Route>
-          <Route key={8} path="/albums">
-            <Albums />
+          <Route key={8} path="/albums/:albumId/edit">
           </Route>
           <Route key={9} path="/albums/:albumId">
+            <AlbumDetails />
           </Route>
-          <Route key={10} path="/albums/:albumId/edit">
+          <Route key={10} path="/albums">
+            <Albums />
           </Route>
-          <Route key={11} path="/playlists">
-            <Playlists />
+          <Route key={11} path="playlists/:playlistId/edit">
           </Route>
           <Route key={12} path="playlists/:playlistId">
           </Route>
-          <Route key={13} path="playlists/:playlistId/edit">
+          <Route key={13} path="/playlists">
+            <Playlists />
           </Route>
           <Route key={14} path="/">
             <Songs />

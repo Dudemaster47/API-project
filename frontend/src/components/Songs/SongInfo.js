@@ -28,7 +28,7 @@ const SongDetail = () => {
                 let foundErrors = Object.values(data.errors);
                 setErrors(foundErrors);
             } else {
-                history.push(`/songs/`);
+                history.push(`/`);
             };
         });
     };
@@ -46,7 +46,7 @@ const SongDetail = () => {
         // console.log(song.song, "wtf is happening")
         if (song && song.song){
             if (song.song.id == songId){
-            return song;
+                return song;
             }
         }
     });
@@ -63,7 +63,7 @@ const SongDetail = () => {
                     <div className="infobox1"><h2>{singleSong?.song.title}</h2></div>
                     <div className="infobox2">{singleSong?.artist.username}</div>
                     <div className="infobox2">In Album: {singleSong?.album.title}</div>
-                    
+
                 </div>
 
                 <div className="audio-player">
