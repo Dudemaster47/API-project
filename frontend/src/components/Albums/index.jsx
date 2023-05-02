@@ -7,8 +7,8 @@
 
 import { getAllAlbums } from "../../store/albums";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import { useParams, useHistory, Link } from "react-router-dom";
 
 const Albums = () => {
     const dispatch = useDispatch();
