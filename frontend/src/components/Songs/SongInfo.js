@@ -31,6 +31,7 @@ const SongDetail = () => {
                 history.push(`/`);
             };
         });
+        history.push(`/`);
     };
 
     useEffect(() => {

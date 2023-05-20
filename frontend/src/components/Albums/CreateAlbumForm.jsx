@@ -90,7 +90,7 @@ const CreateAlbumForm = () => {
                 />
             </div>
             <div className="form-buttons">
-            <button type="submit" className="myButton">Submit</button>
+            <button type="submit" className="myButton" onClick={handleSubmit}>Submit</button>
             <button type="button" onClick={handleCancelClick} className="myButton">Cancel</button>
             </div>
         </form>

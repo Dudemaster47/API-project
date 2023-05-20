@@ -37,6 +37,7 @@ const AlbumDetails = () => {
                 history.push(`/`)
             };
         });
+        history.push(`/`);
     };
 
     useEffect(() => {
