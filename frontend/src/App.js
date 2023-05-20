@@ -16,6 +16,7 @@ import AlbumDetails from "./components/Albums/AlbumDetails";
 import Playlists from "./components/Playlists";
 import SongsList from "./components/Songs/SongsList";
 import CreateAlbumForm from "./components/Albums/CreateAlbumForm";
+import EditAlbumForm from "./components/Albums/EditAlbumForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function App() {
             <CreateAlbumForm />
           </Route>
           <Route key={9} path="/albums/:albumId/edit">
+            <EditAlbumForm />
           </Route>
           <Route key={10} path="/albums/:albumId">
             <AlbumDetails />
