@@ -6,6 +6,7 @@ import { deleteAlbumById } from "../../store/albums";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
+import "./album.css"
 
 
 
@@ -55,26 +56,31 @@ const AlbumDetails = () => {
     const allAlbumInfo = allAlbums.find(album => album.artist);
 
     return (
-        <div className="album-box">
-            <div className="album-top">
-                <img className="albumPic" src={singleAlbum && singleAlbum.previewImage} />
-                <div className="albumInfo1"><h2>{singleAlbum && singleAlbum.title}</h2></div>
-                <div className="albumInfo2"><h2>{allAlbumInfo && allAlbumInfo.artist.username}</h2></div>
-            </div>
-            <div className="song-list">
-                {albumSongs && albumSongs.map((el) =>
-                <Link key={el.id} to={`/songs/${el.id}`} style={{textDecoration: "none"}}>
-                    {el.title}
-                </Link>
-                )}
-            </div>
-            <div className="optionList-outer">
-                    {(sessionUser && allAlbumInfo && sessionUser.id === allAlbumInfo.artist.id) ? (
-                        <div className="optionList-inner">
-                                <button className="myButton">EDIT ALBUM</button>
-                                <button onClick={deleteAlbum} className="myButton">DELETE ALBUM</button>
+        <div className="albumWrapper">
+            <div className="album-box">
+                <div className="album-top">
+                    <img className="albumPic" src={singleAlbum && singleAlbum.previewImage} />
+                    <div className="infoBox">
+                        <div className="albumInfo1"><h2>{singleAlbum && singleAlbum.title}</h2></div>
+                        <div className="albumInfo2"><h2>{allAlbumInfo && allAlbumInfo.artist.username}</h2></div>
+                        <div className="song-list">
+                            {albumSongs && albumSongs.map((el) =>
+                            <Link key={el.id} to={`/songs/${el.id}`} style={{textDecoration: "none"}}>
+                                {el.title}
+                            </Link>
+                            )}
                         </div>
-                    ) : null}
+                    </div>
+                </div>
+                <div className="optionList-outer">
+                        {(sessionUser && allAlbumInfo && sessionUser.id === allAlbumInfo.artist.id) ? (
+                            <div className="optionList-inner">
+                                    <button className="myButton">EDIT ALBUM INFO</button>
+                                    <button className="myButton">ADD/MOVE SONGS</button>
+                                    <button onClick={deleteAlbum} className="myButton">DELETE ALBUM</button>
+                            </div>
+                        ) : null}
+                </div>
             </div>
         </div>
     )

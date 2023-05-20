@@ -62,7 +62,8 @@ const SongDetail = () => {
                 <div className="song-info">
                     <div className="infobox1"><h2>{singleSong?.song.title}</h2></div>
                     <div className="infobox2">{singleSong?.artist.username}</div>
-                    <div className="infobox2">In Album: {singleSong?.album.title}</div>
+                    <div className="infobox2">In Album: <Link to={`/albums/${singleSong && singleSong.album.id}`}>{singleSong?.album.title}</Link></div>
+                    
 
                 </div>
 

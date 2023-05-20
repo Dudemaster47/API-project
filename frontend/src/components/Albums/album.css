@@ -1,0 +1,55 @@
+.albumWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.album-box {
+
+    width: 60%;
+}
+
+.album-top {
+
+    background:linear-gradient(to right bottom, darkgray 15%, #000000 100%);
+    display: flex;
+    flex-direction: row;
+    color: lightgray;
+    font-family: sans-serif;
+}
+
+.albumPic {
+    height: 280px;
+    width: 280px;
+    margin: 10px;
+}
+
+.infoBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.albumInfo1 {
+    margin: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: #424242;
+}
+
+.albumInfo2 {
+    margin: 5px;
+    background-color: #424242;
+}
+
+.song-list {
+    margin: 5px;
+    background:linear-gradient(to left top, darkgray 15%, #000000 100%);
+}
+
+.albumHome {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonBox {
+    margin-top: 2%;
+}

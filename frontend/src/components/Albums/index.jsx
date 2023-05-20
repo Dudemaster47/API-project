@@ -9,6 +9,9 @@ import { getAllAlbums } from "../../store/albums";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
+import "./album.css"
+import "../Songs/Songs.css"
+
 
 const Albums = () => {
     const dispatch = useDispatch();
@@ -22,7 +25,7 @@ const Albums = () => {
     const filteredAlbums = albums.filter((el) => el.userId === sessionUser.id);
 
     return (
-        <>
+        <div className="albumHome">
             <div className="albumList-header">
                 <h1>{sessionUser.username}'s Albums!!</h1>
             </div>
@@ -30,15 +33,19 @@ const Albums = () => {
                 <p>insert user's album/playlist/song list component here</p>
             </div>
             {filteredAlbums && filteredAlbums.map((el) =>
-            <div className="albumList-albumBox">
-                <p>album image</p>
-                <p>{el.title}</p>
-                <p>don't feel ambitious enough for tracks here. these are all links</p>
-                <button>edit album</button>
-                <button>delete album</button>
+            <div className="songLink">
+                <Link className="albumList-albumBox" to={`/albums/${el.id}`} style={{textDecoration: "none"}}>
+                    <div key={el.id} className="songbox">
+                        <img src={el.previewImage} className="home-img"/>
+                        <h3 className="home-title">{el.title}</h3>
+                    </div>
+                </Link>
             </div>
             )}
-        </>
+            <Link className="buttonBox" to={`/albums/new`}>
+                <button className="myButton">Create Album</button>
+            </Link>
+        </div>
     )
 }
 
