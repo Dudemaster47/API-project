@@ -51,8 +51,6 @@ export const createSong = (song) => async dispatch => {
     });
 
     const data = await response.json();
-    console.log(data, "goop");
-
     dispatch(addSongs(data));
     return data;
 };

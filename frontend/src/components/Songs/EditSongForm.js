@@ -3,17 +3,28 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editSong } from '../../store/songs';
 
+// i can alter this to make it possible to add a song to an existing album
+// shouldn't be too hard
+// albeit shitty UI but honestly that's
+// ...oh. right.
+// i can't cannibalize that for playlists :/
+// i don't think i can regardless so i'll have to figure that one out
+// but for this i can just. filter the albums to just those owned by
+// the user, and use a select list.
+// easy enough i just don't have much in me today :/
+
 const EditSongForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { songId } = useParams();
+    const [albumId, setAlbumId] = useState('')
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
     const [description, setDescription] = useState('');
     const [previewImage, setPreviewImage] = useState('');
     const [errors, setErrors] = useState([]);
 
-
+    const updateAlbumId = (e) => setAlbumId(e.target.value);
     const updateTitle = (e) => setTitle(e.target.value);
     const updateUrl = (e) => setUrl(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
@@ -24,6 +35,7 @@ const EditSongForm = () => {
 
         setErrors([]);
         const payload = {
+            albumId,
             title,
             url,
             description,

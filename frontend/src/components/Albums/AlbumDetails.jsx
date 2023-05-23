@@ -76,7 +76,7 @@ const AlbumDetails = () => {
                 <div className="optionList-outer">
                         {(sessionUser && allAlbumInfo && sessionUser.id === allAlbumInfo.artist.id) ? (
                             <div className="optionList-inner">
-                                    <button className="myButton">EDIT ALBUM INFO</button>
+                                    <Link className="myButton" to={`/albums/${albumId}/edit`}>EDIT ALBUM INFO</Link>
                                     <button className="myButton">ADD/MOVE SONGS</button>
                                     <button onClick={deleteAlbum} className="myButton">DELETE ALBUM</button>
                             </div>
